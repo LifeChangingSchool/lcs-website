@@ -7,7 +7,7 @@ export default function Home() {
                 <title>Life Changing School</title>
                 <link rel="icon" href="/favicon.ico"/>
             </Head>
-            <h1 className="px-4">Hello world</h1>
+            <h1 className="px-4 heading">Hello world</h1>
         </div>
     )
 }
