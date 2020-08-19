@@ -1,0 +1,15 @@
+{
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-lcswebsite-dev-183413-authRole",
+            "UnauthRoleArn": "arn:aws:iam::428407698762:role/amplify-lcswebsite-dev-183413-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::428407698762:role/amplify-lcswebsite-dev-183413-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "amplify-lcswebsite-dev-183413-deployment",
+            "UnauthRoleName": "amplify-lcswebsite-dev-183413-unauthRole",
+            "StackName": "amplify-lcswebsite-dev-183413",
+            "StackId": "arn:aws:cloudformation:us-east-1:428407698762:stack/amplify-lcswebsite-dev-183413/1c9d2ef0-e26c-11ea-8184-12dace8e8b83",
+            "AmplifyAppId": "d2le1q5nrku2k9"
+        }
+    }
+}
