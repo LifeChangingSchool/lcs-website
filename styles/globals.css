@@ -19,3 +19,11 @@ a {
 * {
   box-sizing: border-box;
 }
+
+form .label{
+  @apply mt-4 mb-2 inline-block;
+}
+
+form .support{
+  @apply mt-2
+}

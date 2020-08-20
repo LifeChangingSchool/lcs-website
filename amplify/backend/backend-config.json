@@ -1,9 +1,10 @@
 {
 	"auth": {
-		"lcswebsite40564eb0": {
+		"lcswebsite4c59e89b": {
 			"service": "Cognito",
 			"providerPlugin": "awscloudformation",
-			"dependsOn": []
+			"dependsOn": [],
+			"customAuth": false
 		}
 	}
 }

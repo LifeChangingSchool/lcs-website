@@ -1,13 +1,25 @@
 import '../styles/globals.css'
 import "a17t"
 import {AppProps} from "next/app";
+import {useRouter} from "next/router";
+import {ProvideAuth} from "../lib/authlib";
+import Amplify from 'aws-amplify';
+import config from '../aws-exports';
 
-function MyApp({ Component, pageProps }: AppProps) {
-  return (
-      <div className="container">
-        <Component {...pageProps} />
-      </div>
-  )
+Amplify.configure(config);
+
+function MyApp({Component, pageProps}: AppProps) {
+    const router = useRouter();
+
+    return (
+        <div className="container">
+            {router.route.substr(0,6) === "/apply" ? (
+                <ProvideAuth>
+                    <Component {...pageProps} />
+                </ProvideAuth>
+            ) : <Component {...pageProps} />}
+        </div>
+    )
 }
 
 export default MyApp

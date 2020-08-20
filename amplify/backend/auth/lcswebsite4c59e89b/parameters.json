@@ -1,8 +1,8 @@
 {
-    "identityPoolName": "lcswebsite40564eb0_identitypool_40564eb0",
+    "identityPoolName": "lcswebsite4c59e89b_identitypool_4c59e89b",
     "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "lcsweb40564eb0",
-    "userPoolName": "lcswebsite40564eb0_userpool_40564eb0",
+    "resourceNameTruncated": "lcsweb4c59e89b",
+    "userPoolName": "lcswebsite4c59e89b_userpool_4c59e89b",
     "autoVerifiedAttributes": [
         "email"
     ],
@@ -28,10 +28,10 @@
     "userpoolClientReadAttributes": [
         "email"
     ],
-    "userpoolClientLambdaRole": "lcsweb40564eb0_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "lcsweb4c59e89b_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "40564eb0",
-    "resourceName": "lcswebsite40564eb0",
+    "sharedId": "4c59e89b",
+    "resourceName": "lcswebsite4c59e89b",
     "authSelections": "identityPoolAndUserPool",
     "authRoleArn": {
         "Fn::GetAtt": [
@@ -49,11 +49,6 @@
     "usernameAttributes": [
         "email"
     ],
-    "triggers": "{}",
     "userPoolGroupList": [],
-    "parentStack": {
-        "Ref": "AWS::StackId"
-    },
-    "permissions": [],
     "dependsOn": []
 }
