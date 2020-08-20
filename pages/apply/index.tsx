@@ -29,7 +29,7 @@ export default function ApplyIndex() {
                 <hr/>
                 <p className="supra mb-4">Application status</p>
                 <p className={`portal my-1 ~info ${openSection === 2 ? "active" : ""}`}
-                   onClick={() => setOpenSection(2)} disabled>Check status</p>
+                   onClick={() => setOpenSection(2)}>Check status</p>
             </div>
             <div className="w-full ml-8">
                 {{
