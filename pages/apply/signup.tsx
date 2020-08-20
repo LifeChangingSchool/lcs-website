@@ -1,7 +1,8 @@
 import { useForm } from "react-hook-form";
 import { useAuth } from "../../lib/authlib";
 import { useRouter } from "next/router";
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import Link from "next/link";
 
 export default function ApplySignup(){
     const auth = useAuth();
@@ -33,9 +34,28 @@ export default function ApplySignup(){
         })
     }
 
+    useEffect(() => {
+        function checkRedirect(e = null) {
+            if (auth.user || e) {
+                router.push({pathname: "/apply", query: {message: "Already logged in"}});
+            }
+        }
+
+        window.addEventListener("authSuccess", checkRedirect);
+
+        checkRedirect();
+
+        return () => {
+            window.removeEventListener("authSuccess", checkRedirect);
+        }
+    }, []);
+
     return (
         <div className="max-w-sm mx-auto">
             <form onSubmit={handleSubmit(onSubmit)}>
+                <h1 className="heading">Start your application today</h1>
+                <p className="support">Create an account in our portal to submit your application</p>
+                <hr/>
 
                 {isLoading && <p className="aside ~info">Loading...</p>}
 
@@ -53,7 +73,14 @@ export default function ApplySignup(){
                 <input type="password" name="confirmPassword" className="field" ref={register({required: true})}/>
                 {matchError && <p className="~critical support">Passwords don't match</p>}
 
-                <button className="button ~urge !high mt-4">Sign up</button>
+                <button className="button button-big ~urge !high mt-4">Get started</button>
+
+                <hr/>
+
+                <div className="flex items-center">
+                    <p>Already have an account?</p>
+                    <Link href="/apply/login"><a className="button ml-auto">Log in</a></Link>
+                </div>
             </form>
         </div>
     )

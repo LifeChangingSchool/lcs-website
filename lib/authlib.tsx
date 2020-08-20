@@ -14,7 +14,6 @@ export const useAuth = () => {
 
 function useProvideAuth() {
     const [user, setUser] = useState(null);
-    const [email, setEmail] = useState<string>(null);
 
     const signin = (email: string, password: string): Promise<any> => {
         return Auth.signIn(email, password).then(res => {
@@ -23,22 +22,26 @@ function useProvideAuth() {
     };
 
     const signup = (email: string, password: string): Promise<any> => {
-        return Auth.signUp(email, password).then(() => {
-            setEmail(email); // store email for confirmation function
-        });
+        return Auth.signUp(email, password);
     };
 
-    const confirm = (code: string): Promise<any> => {
+    const confirm = (email: string, code: string): Promise<any> => {
         return Auth.confirmSignUp(email, code);
     }
 
     const signout = (): Promise<any> => {
-        return Auth.signOut();
+        return Auth.signOut().then(() => {
+            setUser(null);
+        });
     };
 
     useEffect(() => {
-        Auth.currentUserInfo().then(res => {
+        Auth.currentAuthenticatedUser().then(res => {
             setUser(res);
+            window.dispatchEvent(new CustomEvent("authSuccess", {detail: res}));
+        }).catch(e => {
+            console.log("not yet logged in");
+            window.dispatchEvent(new Event("authFail"));
         });
     }, []);
 
