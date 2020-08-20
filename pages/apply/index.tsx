@@ -1,6 +1,7 @@
 import {useEffect} from "react";
 import {useAuth} from "../../lib/authlib";
 import {useRouter} from "next/router";
+import Accordion from "react-robust-accordion";
 
 export default function ApplyIndex() {
     const auth = useAuth();
@@ -12,6 +13,11 @@ export default function ApplyIndex() {
         }
     }, []);
     return (
-        <h1>Apply</h1>
+        <div>
+            <h1>Test</h1>
+            <Accordion label={<p>Testing accordion</p>}>
+                <p>Accordion inside</p>
+            </Accordion>
+        </div>
     )
 }
