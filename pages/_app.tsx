@@ -1,5 +1,5 @@
-import '../styles/globals.css'
 import "a17t"
+import '../styles/globals.css'
 import {AppProps} from "next/app";
 import {useRouter} from "next/router";
 import {ProvideAuth} from "../lib/authlib";
