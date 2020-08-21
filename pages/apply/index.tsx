@@ -47,6 +47,15 @@ export default function ApplyIndex() {
     async function saveSection1(submit: boolean) {
         setJustSaved(false);
 
+        // set errors to false to hide error message
+        setErrors({
+            firstName: false,
+            lastName: false,
+            phoneNumber: false,
+            channel: false,
+            referralCode: false
+        });
+
         // validate phone number and referral code
 
         if (submit) {
@@ -79,9 +88,12 @@ export default function ApplyIndex() {
                 phoneNumber: phoneNumber,
                 channel: channel,
                 referralCode: referralCode,
+            }, {
+                headers: {
+                    "Authorization": `token ${process.env.NEXT_PUBLIC_API_KEY}asdf`
+                }
             }));
 
-            /*
             await API.graphql(graphqlOperation(mutations.updateAppOct2020, {
                 input: {
                     id: appID,
@@ -93,10 +105,11 @@ export default function ApplyIndex() {
                     submitted1: submit
                 }
             }));
-            */
+
             setIsLoading(false);
             setJustSaved(true);
         } catch (e) {
+            setIsLoading(false);
             console.log(e);
         }
     }
