@@ -51,6 +51,8 @@ export default function ApplyIndex() {
     async function saveSection1(submit: boolean) {
         setJustSaved(false);
 
+        if (!isStudent) return;
+
         // set errors to false to hide error message
         setErrors({
             firstName: false,
@@ -70,7 +72,7 @@ export default function ApplyIndex() {
         };
 
         // validate phone number
-        newErrors.phoneNumber = !validator.isMobilePhone();
+        newErrors.phoneNumber = !validator.isMobilePhone(phoneNumber);
 
         // validate referral code
         // implement later
@@ -98,6 +100,7 @@ export default function ApplyIndex() {
                 phoneNumber: phoneNumber,
                 channel: channel,
                 referralCode: referralCode,
+                email: auth.user.attributes.email
             }, {
                 headers: {
                     "Authorization": `token ${process.env.NEXT_PUBLIC_API_KEY}`
@@ -144,7 +147,8 @@ export default function ApplyIndex() {
                 essay1: essay1,
                 essay2: essay2,
                 essay3: essay3,
-                essay4: essay4
+                essay4: essay4,
+                email: auth.user.attributes.email
             }, {
                 headers: {
                     "Authorization": `token ${process.env.NEXT_PUBLIC_API_KEY}`
@@ -195,6 +199,8 @@ export default function ApplyIndex() {
             setIsLoading(true);
             const allAppsRes: any = await API.graphql(graphqlOperation(queries.listAppOct2020s));
             const allApps: any[] = allAppsRes.data.listAppOct2020s.items;
+
+            // if no application exists, create one
             if (allApps.length === 0) {
                 const newAppRes: any = await API.graphql(graphqlOperation(mutations.createAppOct2020, {
                     input: {
@@ -203,6 +209,14 @@ export default function ApplyIndex() {
                     }
                 }));
                 const newApp: any = newAppRes.data.createAppOct2020;
+                await axios.post("/api/AppOct2020/createApplication", {
+                    id: newApp.id,
+                    email: auth.user.attributes.email
+                }, {
+                    headers: {
+                        "Authorization": `token ${process.env.NEXT_PUBLIC_API_KEY}`
+                    }
+                });
                 setAppID(newApp.id);
                 setIsLoading(false);
             } else {
@@ -263,7 +277,7 @@ export default function ApplyIndex() {
                 {isLoading && <p className="aside ~info mb-6">Loading...</p>}
                 {justSaved && <p className="aside ~positive mb-6">Successfully saved application</p>}
                 {Object.keys(errors).some(error => errors[error]) &&
-                <p className="aside ~critical mb-6">Fill in all fields with valid values to submit.</p>}
+                <p className="aside ~critical mb-6">Fill in all fields with valid values to save or submit.</p>}
                 {{
                     0: (
                         <>
@@ -287,7 +301,7 @@ export default function ApplyIndex() {
                                     number</label> {/* maybe use that nice phone number package */}
                                 <input type="text" className="field" value={phoneNumber} disabled={submitted1}
                                        onChange={e => setPhoneNumber(e.target.value)}/>
-                                {errors.phoneNumber && <p className="support ~critical">Enter your phone number</p>}
+                                {errors.phoneNumber && <p className="support ~critical">Enter a valid phone number</p>}
 
                                 <hr/>
 
@@ -378,19 +392,35 @@ export default function ApplyIndex() {
                                 <>
                                     <hr/>
                                     <div className="flex justify-end mb-8">
-                                        <button className="button ~neutral !normal ml-4"
-                                                onClick={() => saveSection1(false)}>Save
+                                        <button
+                                            className="button ~neutral !normal ml-4"
+                                            onClick={() => saveSection1(false)}
+                                        >Save
                                         </button>
-                                        <button className="button ~urge !high ml-4" onClick={() => saveSection1(true)}>Submit
+                                        <button
+                                            className="button ~urge !high ml-4"
+                                            onClick={() => saveSection1(true)}
+                                            disabled={!isStudent}
+                                        >
+                                            Submit
                                             basic info
                                         </button>
                                     </div>
                                 </>
                             )}
+                            <button
+                                className="button ~urge !high ml-4"
+                                onClick={() => saveSection1(true)}
+                                disabled={!isStudent}
+                            >
+                                Submit
+                                basic info
+                            </button>
                         </>
                     ), 1: (
                         <>
                             {submitted2 && <p className="aside ~info">You've already submitted this section of the application and can no longer make any changes.</p>}
+                            {essayError && <p className="aside ~critical">Complete all essays to submit.</p>}
                             <form>
                                 <label className="label">Tell about a successful startup that you find cool. What do you
                                     think makes them successful?</label>
@@ -420,7 +450,12 @@ export default function ApplyIndex() {
                                         <button className="button ~neutral !normal ml-4"
                                                 onClick={() => saveSection2(false)}>Save
                                         </button>
-                                        <button className="button ~urge !high ml-4" onClick={() => saveSection2(true)}>Submit written responses
+                                        <button
+                                            className="button ~urge !high ml-4"
+                                            onClick={() => saveSection2(true)}
+                                            disabled={!(essay1 && essay2 && essay3 && essay4)}
+                                        >
+                                            Submit written responses
                                         </button>
                                     </div>
                                 </>
