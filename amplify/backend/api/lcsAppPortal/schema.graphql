@@ -1,0 +1,14 @@
+type AppOct2020 @model @auth(rules: [{ allow: owner }]) {
+  id: ID!
+  submitted1: Boolean!
+  submitted2: Boolean!
+  firstName: String
+  lastName: String
+  phoneNumber: String
+  channel: String
+  referralCode: String
+  essay1: String
+  essay2: String
+  essay3: String
+  essay4: String
+}
