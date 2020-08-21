@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "postbuild": "next-on-netlify",
     "start": "next start",
     "export": "next export"
   },
@@ -15,6 +16,7 @@
     "aws-amplify": "^3.0.24",
     "axios": "^0.20.0",
     "next": "9.5.2",
+    "next-on-netlify": "^2.3.2",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-hook-form": "^6.4.1",
