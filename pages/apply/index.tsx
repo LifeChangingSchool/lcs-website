@@ -409,14 +409,6 @@ export default function ApplyIndex() {
                                     </div>
                                 </>
                             )}
-                            <button
-                                className="button ~urge !high ml-4"
-                                onClick={() => saveSection1(true)}
-                                disabled={!isStudent}
-                            >
-                                Submit
-                                basic info
-                            </button>
                         </>
                     ), 1: (
                         <>
