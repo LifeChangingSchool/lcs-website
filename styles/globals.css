@@ -37,3 +37,7 @@ h1.heading {
 button.button.button-big{
   @apply w-full p-4 text-center my-6 block;
 }
+
+.portal {
+  @apply items-center;
+}

@@ -5,6 +5,7 @@ import axios from "axios";
 import {API, graphqlOperation} from "aws-amplify";
 import * as queries from "../../graphql/queries";
 import * as mutations from "../../graphql/mutations";
+import {FaCheckCircle} from "react-icons/fa";
 
 export default function ApplyIndex() {
     const auth = useAuth();
@@ -168,17 +169,23 @@ export default function ApplyIndex() {
             <div className="w-64 border-r -mt-8 pt-8 flex-shrink-0">
                 <p className="supra mb-4">Application steps</p>
                 <div>
-                    <p className={`portal my-1 ~info ${openSection === 0 ? "active" : ""}`}
-                       onClick={() => changeSection(0)}>Basic info</p>
+                    <button className={`portal my-1 ~info ${openSection === 0 ? "active" : ""}`}
+                       onClick={() => changeSection(0)}>
+                        {submitted1 && <FaCheckCircle className="mr-2"/>}
+                        Basic info
+                    </button>
                 </div>
                 <div>
-                    <p className={`portal my-1 ~info ${openSection === 1 ? "active" : ""}`}
-                       onClick={() => changeSection(1)}>Written response</p>
+                    <button className={`portal my-1 ~info ${openSection === 1 ? "active" : ""}`}
+                       onClick={() => changeSection(1)} disabled={!submitted1}>
+                        {submitted2 && <FaCheckCircle className="mr-2"/>}
+                        Written response
+                    </button>
                 </div>
                 <hr/>
                 <p className="supra mb-4">Application status</p>
-                <p className={`portal my-1 ~info ${openSection === 2 ? "active" : ""}`}
-                   onClick={() => changeSection(2)}>Check status</p>
+                <button className={`portal my-1 ~info ${openSection === 2 ? "active" : ""}`}
+                   onClick={() => changeSection(2)} disabled={!submitted2}>Check status</button>
             </div>
             <div className="w-full ml-8">
                 <h1 className="heading">{{0: "Basic info", 1: "Written responses", 2: "Check status"}[openSection]}</h1>
@@ -190,24 +197,25 @@ export default function ApplyIndex() {
                 {{
                     0: (
                         <>
+                            {submitted1 && <p className="aside ~info">You've already submitted this section of the application and can no longer make any changes.</p>}
                             <form action="">
                                 <div className="flex justify-between -mx-2">
                                     <div className="flex-1 mx-2">
                                         <label className="label">First name</label>
-                                        <input type="text" className="field" value={firstName}
+                                        <input type="text" className="field" value={firstName} disabled={submitted1}
                                                onChange={e => setFirstName(e.target.value)}/>
                                         {errors.firstName && <p className="support ~critical">Enter your first name</p>}
                                     </div>
                                     <div className="flex-1 mx-2">
                                         <label className="label">Last name</label>
-                                        <input type="text" className="field" value={lastName}
+                                        <input type="text" className="field" value={lastName} disabled={submitted1}
                                                onChange={e => setLastName(e.target.value)}/>
                                         {errors.lastName && <p className="support ~critical">Enter your last name</p>}
                                     </div>
                                 </div>
                                 <label className="label">Phone
                                     number</label> {/* maybe use that nice phone number package */}
-                                <input type="text" className="field" value={phoneNumber}
+                                <input type="text" className="field" value={phoneNumber} disabled={submitted1}
                                        onChange={e => setPhoneNumber(e.target.value)}/>
                                 {errors.phoneNumber && <p className="support ~critical">Enter your phone number</p>}
 
@@ -217,12 +225,12 @@ export default function ApplyIndex() {
                                 <div>
                                     <label className="switch mr-4">
                                         <input type="radio" name="isStudent" className="mr-2" checked={isStudent}
-                                               onChange={e => setIsStudent(e.target.checked)}/>
+                                               onChange={e => setIsStudent(e.target.checked)} disabled={submitted1}/>
                                         <span>Yes</span>
                                     </label>
                                     <label className="switch mr-4">
                                         <input type="radio" name="isStudent" className="mr-2" checked={!isStudent}
-                                               onChange={e => setIsStudent(!e.target.checked)}/>
+                                               onChange={e => setIsStudent(!e.target.checked)} disabled={submitted1}/>
                                         <span>No</span>
                                     </label>
                                 </div>
@@ -233,56 +241,56 @@ export default function ApplyIndex() {
                                 <label className="label">How did you hear about LCS?</label>
                                 <div>
                                     <label className="switch block my-2">
-                                        <input type="radio" name="channel" className="mr-2"
+                                        <input type="radio" name="channel" className="mr-2" disabled={submitted1}
                                                checked={channel === "school"} onChange={() => {
                                             setChannel("school")
                                         }}/>
                                         <span>School</span>
                                     </label>
                                     <label className="switch block my-2">
-                                        <input type="radio" name="channel" className="mr-2"
+                                        <input type="radio" name="channel" className="mr-2" disabled={submitted1}
                                                checked={channel === "friend"} onChange={() => {
                                             setChannel("friend")
                                         }}/>
                                         <span>Friends</span>
                                     </label>
                                     <label className="switch block my-2">
-                                        <input type="radio" name="channel" className="mr-2"
+                                        <input type="radio" name="channel" className="mr-2" disabled={submitted1}
                                                checked={channel === "instagram"} onChange={() => {
                                             setChannel("instagram")
                                         }}/>
                                         <span>Instagram</span>
                                     </label>
                                     <label className="switch block my-2">
-                                        <input type="radio" name="channel" className="mr-2"
+                                        <input type="radio" name="channel" className="mr-2" disabled={submitted1}
                                                checked={channel === "facebook"} onChange={() => {
                                             setChannel("facebook")
                                         }}/>
                                         <span>Facebook</span>
                                     </label>
                                     <label className="switch block my-2">
-                                        <input type="radio" name="channel" className="mr-2"
+                                        <input type="radio" name="channel" className="mr-2" disabled={submitted1}
                                                checked={channel === "parents"} onChange={() => {
                                             setChannel("parents")
                                         }}/>
                                         <span>Parents</span>
                                     </label>
                                     <label className="switch block my-2">
-                                        <input type="radio" name="channel" className="mr-2"
+                                        <input type="radio" name="channel" className="mr-2" disabled={submitted1}
                                                checked={channel === "alumni"} onChange={() => {
                                             setChannel("alumni")
                                         }}/>
                                         <span>LCS Alumni</span>
                                     </label>
                                     <label className="switch block my-2">
-                                        <input type="radio" name="channel" className="mr-2"
+                                        <input type="radio" name="channel" className="mr-2" disabled={submitted1}
                                                checked={channel === "mentor"} onChange={() => {
                                             setChannel("mentor")
                                         }}/>
                                         <span>LCS Mentor</span>
                                     </label>
                                     <label className="switch block my-2">
-                                        <input type="radio" name="channel" className="mr-2"
+                                        <input type="radio" name="channel" className="mr-2" disabled={submitted1}
                                                checked={channel === "other"} onChange={() => {
                                             setChannel("other")
                                         }}/>
@@ -292,19 +300,23 @@ export default function ApplyIndex() {
                                 {errors.channel && <p className="support ~critical">Select an option</p>}
                                 <hr/>
                                 <label className="label">If you have a referral code, enter it below</label>
-                                <input type="text" className="field" value={referralCode}
+                                <input type="text" className="field" value={referralCode} disabled={submitted1}
                                        onChange={e => setReferralCode(e.target.value)}/>
                                 {errors.referralCode && <p className="support ~critical">Invalid referral code</p>}
                             </form>
-                            <hr/>
-                            <div className="flex justify-end mb-8">
-                                <button className="button ~neutral !normal ml-4"
-                                        onClick={() => saveSection1(false)}>Save
-                                </button>
-                                <button className="button ~urge !high ml-4" onClick={() => saveSection1(true)}>Submit
-                                    basic info
-                                </button>
-                            </div>
+                            {!submitted1 && (
+                                <>
+                                    <hr/>
+                                    <div className="flex justify-end mb-8">
+                                        <button className="button ~neutral !normal ml-4"
+                                                onClick={() => saveSection1(false)}>Save
+                                        </button>
+                                        <button className="button ~urge !high ml-4" onClick={() => saveSection1(true)}>Submit
+                                            basic info
+                                        </button>
+                                    </div>
+                                </>
+                            )}
                         </>
                     ), 1: (
                         <>
