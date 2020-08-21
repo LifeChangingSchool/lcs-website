@@ -2,6 +2,7 @@ import {useEffect, useState} from "react";
 import {useAuth} from "../../lib/authlib";
 import {useRouter} from "next/router";
 import axios from "axios";
+import validator from "validator";
 import {API, graphqlOperation} from "aws-amplify";
 import * as queries from "../../graphql/queries";
 import * as mutations from "../../graphql/mutations";
@@ -57,26 +58,32 @@ export default function ApplyIndex() {
             referralCode: false
         });
 
-        // validate phone number and referral code
+        // round of error checking
+        let newErrors = {
+            firstName: false,
+            lastName: false,
+            phoneNumber: false,
+            channel: false,
+            referralCode: false
+        };
 
+        // validate phone number
+        newErrors.phoneNumber = !validator.isMobilePhone();
+
+        // validate referral code
+        // implement later
+
+        // if submitting, check that no fields are empty
         if (submit) {
-            let newErrors = {
-                firstName: false,
-                lastName: false,
-                phoneNumber: false,
-                channel: false,
-                referralCode: false
-            };
-
             if (!firstName) newErrors.firstName = true;
             if (!lastName) newErrors.lastName = true;
-            if (!phoneNumber) newErrors.phoneNumber = true;
             if (!channel) newErrors.channel = true;
+        }
 
-            if (Object.keys(newErrors).some(error => newErrors[error])) { // if there are any errors
-                setErrors(newErrors);
-                return;
-            }
+        // if any errors, return instead of making API calls
+        if (Object.keys(newErrors).some(error => newErrors[error])) {
+            setErrors(newErrors);
+            return;
         }
 
         try {
