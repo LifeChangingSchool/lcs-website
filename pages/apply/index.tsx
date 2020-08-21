@@ -72,7 +72,7 @@ export default function ApplyIndex() {
         };
 
         // validate phone number
-        newErrors.phoneNumber = !validator.isMobilePhone(phoneNumber);
+        newErrors.phoneNumber = phoneNumber && !validator.isMobilePhone(phoneNumber);
 
         // validate referral code
         // implement later
@@ -81,6 +81,7 @@ export default function ApplyIndex() {
         if (submit) {
             if (!firstName) newErrors.firstName = true;
             if (!lastName) newErrors.lastName = true;
+            if (!phoneNumber) newErrors.phoneNumber = true;
             if (!channel) newErrors.channel = true;
         }
 
@@ -299,8 +300,8 @@ export default function ApplyIndex() {
                                 </div>
                                 <label className="label">Phone
                                     number</label> {/* maybe use that nice phone number package */}
-                                <input type="text" className="field" value={phoneNumber} disabled={submitted1}
-                                       onChange={e => setPhoneNumber(e.target.value)}/>
+                                <input type="text" className="field" value={phoneNumber}
+                                       onChange={e => setPhoneNumber(e.target.value)} disabled={submitted1}/>
                                 {errors.phoneNumber && <p className="support ~critical">Enter a valid phone number</p>}
 
                                 <hr/>
