@@ -7,6 +7,7 @@ import {API, graphqlOperation} from "aws-amplify";
 import * as queries from "../../graphql/queries";
 import * as mutations from "../../graphql/mutations";
 import {FaCheckCircle} from "react-icons/fa";
+import LimitedTextarea from "../../components/limited-textarea";
 
 export default function ApplyIndex() {
     const auth = useAuth();
@@ -38,6 +39,7 @@ export default function ApplyIndex() {
         channel: false,
         referralCode: false
     });
+    const [essayError, setEssayError] = useState<boolean>(false);
 
     // written responses
     const [submitted2, setSubmitted2] = useState<boolean>(false);
@@ -98,7 +100,7 @@ export default function ApplyIndex() {
                 referralCode: referralCode,
             }, {
                 headers: {
-                    "Authorization": `token ${process.env.NEXT_PUBLIC_API_KEY}asdf`
+                    "Authorization": `token ${process.env.NEXT_PUBLIC_API_KEY}`
                 }
             }));
 
@@ -114,6 +116,54 @@ export default function ApplyIndex() {
                 }
             }));
 
+            if (submit) setSubmitted1(true);
+
+            setIsLoading(false);
+            setJustSaved(true);
+        } catch (e) {
+            setIsLoading(false);
+            console.log(e);
+        }
+    }
+
+    async function saveSection2(submit: boolean){
+        setJustSaved(false);
+        setEssayError(false);
+
+        // if any essay is empty
+        if (submit && !(essay1 && essay2 && essay3 && essay4)) {
+            setEssayError(true);
+            return;
+        }
+
+        try {
+            setIsLoading(true);
+
+            if (submit) console.log(await axios.post("/api/AppOct2020/submitSection2", {
+                id: appID,
+                essay1: essay1,
+                essay2: essay2,
+                essay3: essay3,
+                essay4: essay4
+            }, {
+                headers: {
+                    "Authorization": `token ${process.env.NEXT_PUBLIC_API_KEY}`
+                }
+            }));
+
+            await API.graphql(graphqlOperation(mutations.updateAppOct2020, {
+                input: {
+                    id: appID,
+                    essay1: essay1,
+                    essay2: essay2,
+                    essay3: essay3,
+                    essay4: essay4,
+                    submitted2: submit
+                }
+            }));
+
+            if (submit) setSubmitted2(true);
+
             setIsLoading(false);
             setJustSaved(true);
         } catch (e) {
@@ -125,6 +175,14 @@ export default function ApplyIndex() {
     function changeSection(i: number) {
         setIsLoading(false);
         setJustSaved(false);
+        setEssayError(false);
+        setErrors({
+            firstName: false,
+            lastName: false,
+            phoneNumber: false,
+            channel: false,
+            referralCode: false
+        });
         setOpenSection(i);
     }
 
@@ -186,7 +244,7 @@ export default function ApplyIndex() {
                     <button className={`portal my-1 ~info ${openSection === 1 ? "active" : ""}`}
                        onClick={() => changeSection(1)} disabled={!submitted1}>
                         {submitted2 && <FaCheckCircle className="mr-2"/>}
-                        Written response
+                        Written responses
                     </button>
                 </div>
                 <hr/>
@@ -196,6 +254,11 @@ export default function ApplyIndex() {
             </div>
             <div className="w-full ml-8">
                 <h1 className="heading">{{0: "Basic info", 1: "Written responses", 2: "Check status"}[openSection]}</h1>
+                <p className="support">{{
+                    0: "Submit some basic info to access the second part of the application.",
+                    1: "Answer these four short responses in 300 words or less to help us get to know you a bit better.",
+                    2: "Check here to see if your application has been accepted."
+                }[openSection]}</p>
                 <hr/>
                 {isLoading && <p className="aside ~info mb-6">Loading...</p>}
                 {justSaved && <p className="aside ~positive mb-6">Successfully saved application</p>}
@@ -327,31 +390,41 @@ export default function ApplyIndex() {
                         </>
                     ), 1: (
                         <>
-                            <label className="label">Tell about a successful startup that you find cool. What do you
-                                think makes them successful?</label>
-                            <div className="my-4">
-                                <textarea className="textarea field resize-none" rows={12}/>
-                            </div>
-                            <label className="label">What is your biggest weakness and what have you done to overcome
-                                it?</label>
-                            <div className="my-4">
-                                <textarea className="textarea field resize-none" rows={12}/>
-                            </div>
-                            <label className="label">Do you have any prior experience with entrepreneurship? Tell us if
-                                you've built anything in the past! (optional)</label>
-                            <div className="my-4">
-                                <textarea className="textarea field resize-none" rows={12}/>
-                            </div>
-                            <label className="label">What makes you a good fit for LCS and why do you want to take part
-                                in this program?</label>
-                            <div className="my-4">
-                                <textarea className="textarea field resize-none" rows={12}/>
-                            </div>
-                            <hr/>
-                            <div className="flex justify-end mb-8">
-                                <button className="button ~neutral !normal ml-4">Save</button>
-                                <button className="button ~urge !high ml-4">Submit basic info</button>
-                            </div>
+                            {submitted2 && <p className="aside ~info">You've already submitted this section of the application and can no longer make any changes.</p>}
+                            <form>
+                                <label className="label">Tell about a successful startup that you find cool. What do you
+                                    think makes them successful?</label>
+                                <div className="my-4">
+                                    <LimitedTextarea value={essay1} setValue={setEssay1} limit={300} rows={12} className="textarea field resize-none" disabled={submitted2}/>
+                                </div>
+                                <label className="label">What is your biggest weakness and what have you done to overcome
+                                    it?</label>
+                                <div className="my-4">
+                                    <LimitedTextarea value={essay2} setValue={setEssay2} limit={300} rows={12} className="textarea field resize-none" disabled={submitted2}/>
+                                </div>
+                                <label className="label">What makes you a good fit for LCS and why do you want to take part
+                                    in this program?</label>
+                                <div className="my-4">
+                                    <LimitedTextarea value={essay4} setValue={setEssay4} limit={300} rows={12} className="textarea field resize-none" disabled={submitted2}/>
+                                </div>
+                                <label className="label">Do you have any prior experience with entrepreneurship? Tell us if
+                                    you've built anything in the past! (optional)</label>
+                                <div className="my-4">
+                                    <LimitedTextarea value={essay3} setValue={setEssay3} limit={300} rows={12} className="textarea field resize-none" disabled={submitted2}/>
+                                </div>
+                            </form>
+                            {!submitted2 && (
+                                <>
+                                    <hr/>
+                                    <div className="flex justify-end mb-8">
+                                        <button className="button ~neutral !normal ml-4"
+                                                onClick={() => saveSection2(false)}>Save
+                                        </button>
+                                        <button className="button ~urge !high ml-4" onClick={() => saveSection2(true)}>Submit written responses
+                                        </button>
+                                    </div>
+                                </>
+                            )}
                         </>
                     ), 2: (
                         <>

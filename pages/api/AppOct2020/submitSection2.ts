@@ -13,7 +13,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         res.status(401).json({message: "Unauthenticated"});
         return;
     }
-    await axios.post("https://hooks.zapier.com/hooks/catch/8296204/oflwh2v", data);
+    await axios.post("https://hooks.zapier.com/hooks/catch/8296204/ofleg8e/", data);
     res.status(200).json({data: data, headers: req.headers});
     return;
 }
