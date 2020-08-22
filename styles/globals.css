@@ -41,3 +41,7 @@ button.button.button-big{
 .portal {
   @apply items-center;
 }
+
+.aside {
+  @apply mb-6;
+}

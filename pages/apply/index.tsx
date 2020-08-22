@@ -48,6 +48,9 @@ export default function ApplyIndex() {
     const [essay3, setEssay3] = useState<string>("");
     const [essay4, setEssay4] = useState<string>("");
 
+    // check status
+    const [status, setStatus] = useState<string>("inprogress");
+
     async function saveSection1(submit: boolean) {
         setJustSaved(false);
 
@@ -237,6 +240,21 @@ export default function ApplyIndex() {
                 setEssay4(currApp.essay4 || "");
 
                 setAppID(currApp.id);
+
+                // if submission complete, check for status through AirTable
+                if (currApp.submitted1 && currApp.submitted2) {
+                    axios.get("/api/AppOct2020/checkStatus", {
+                        params: {
+                            id: currApp.id
+                        },
+                        headers: {
+                            "Authorization": `token ${process.env.NEXT_PUBLIC_API_KEY}`
+                        }
+                    }).then(res => {
+                        setStatus(res.data.data.status);
+                    });
+                }
+
                 setIsLoading(false);
             }
         }
@@ -412,7 +430,7 @@ export default function ApplyIndex() {
                         </>
                     ), 1: (
                         <>
-                            {submitted2 && <p className="aside ~info">You've already submitted this section of the application and can no longer make any changes.</p>}
+                            {submitted2 && <p className="aside ~info">You've submitted this section of the application and can no longer make any changes.</p>}
                             {essayError && <p className="aside ~critical">Complete all essays to submit.</p>}
                             <form>
                                 <label className="label">Tell about a successful startup that you find cool. What do you
