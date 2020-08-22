@@ -427,6 +427,15 @@ export default function ApplyIndex() {
                                     </div>
                                 </>
                             )}
+                            {process.env.NODE_ENV === "development" && (
+                                <button
+                                    className="button ~urge !high ml-4"
+                                    onClick={() => saveSection1(true)}
+                                    disabled={!isStudent}
+                                >
+                                    Submit basic info (DEV)
+                                </button>
+                            )}
                         </>
                     ), 1: (
                         <>
@@ -471,10 +480,19 @@ export default function ApplyIndex() {
                                     </div>
                                 </>
                             )}
+                            {process.env.NODE_ENV === "development" && (
+                                <button
+                                    className="button ~urge !high ml-4"
+                                    onClick={() => saveSection1(true)}
+                                    disabled={!isStudent}
+                                >
+                                    Submit written responses (DEV)
+                                </button>
+                            )}
                         </>
                     ), 2: (
                         <>
-                            <p>Testing</p>
+                            <p>{status ? status : "not submitted yet"}</p>
                         </>
                     )
                 }[openSection]}
