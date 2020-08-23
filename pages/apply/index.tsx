@@ -10,6 +10,7 @@ import {FaCaretDown, FaCaretUp, FaCheckCircle} from "react-icons/fa";
 import LimitedTextarea from "../../components/limited-textarea";
 import ApplyAccepted from "../../components/applyAccepted";
 import Accordion from "react-robust-accordion";
+import Skeleton from "react-loading-skeleton";
 
 export default function ApplyIndex(props: {query: {[key: string]: string}}) {
     const auth = useAuth();
@@ -53,6 +54,92 @@ export default function ApplyIndex(props: {query: {[key: string]: string}}) {
 
     // check status
     const [status, setStatus] = useState<string>("");
+
+    useEffect(() => {
+
+        window.addEventListener("resize", resizeAccordion);
+
+        function resizeAccordion(){
+            if (window.innerWidth > 600 && !menuOpen) setMenuOpen(true);
+        }
+
+        setIsLoading(true);
+
+        if (!auth.user) {
+            router.push({pathname: "/apply/login", query: {returnStage: props.query.stage}});
+            return;
+        }
+
+        async function onLoad() {
+            const allAppsRes: any = await API.graphql(graphqlOperation(queries.listAppOct2020s));
+            const allApps: any[] = allAppsRes.data.listAppOct2020s.items;
+
+            // if no application exists, create one
+            if (allApps.length === 0) {
+                const newAppRes: any = await API.graphql(graphqlOperation(mutations.createAppOct2020, {
+                    input: {
+                        submitted1: false,
+                        submitted2: false
+                    }
+                }));
+                const newApp: any = newAppRes.data.createAppOct2020;
+                await axios.post("/api/AppOct2020/createApplication", {
+                    id: newApp.id,
+                    email: auth.user.attributes.email
+                }, {
+                    headers: {
+                        "Authorization": `token ${process.env.NEXT_PUBLIC_API_KEY}`
+                    }
+                });
+                setAppID(newApp.id);
+
+                if (openSection !== 0) {
+                    changeSection(0);
+                }
+
+            } else {
+                const currApp = allApps[0];
+
+                setSubmitted1(currApp.submitted1);
+                setFirstName(currApp.firstName || "");
+                setLastName(currApp.lastName || "");
+                setPhoneNumber(currApp.phoneNumber || "");
+                setChannel(currApp.channel || "");
+                setReferralCode(currApp.referralCode || "");
+
+                setSubmitted2(currApp.submitted2);
+                setEssay1(currApp.essay1 || "");
+                setEssay2(currApp.essay2 || "");
+                setEssay3(currApp.essay3 || "");
+                setEssay4(currApp.essay4 || "");
+
+                setAppID(currApp.id);
+
+                // if submission complete, check for status through AirTable
+                if (currApp.submitted1 && currApp.submitted2) {
+                    axios.get("/api/AppOct2020/checkStatus", {
+                        params: {
+                            id: currApp.id
+                        },
+                        headers: {
+                            "Authorization": `token ${process.env.NEXT_PUBLIC_API_KEY}`
+                        }
+                    }).then(res => {
+                        setStatus(res.data.data.status);
+                    });
+                } else if (currApp.submitted1 + currApp.submitted2 < openSection) {
+                    changeSection(currApp.submitted1 + currApp.submitted2);
+                }
+
+            }
+            setIsLoading(false);
+            setMenuOpen(true);
+        }
+
+        onLoad();
+
+        return () => window.removeEventListener("resize", resizeAccordion);
+    }, []);
 
     async function saveSection1(submit: boolean) {
         setJustSaved(false);
@@ -197,92 +284,6 @@ export default function ApplyIndex(props: {query: {[key: string]: string}}) {
         router.push({pathname: "/apply", query: {stage: i}});
         setOpenSection(i);
     }
-
-    useEffect(() => {
-
-        window.addEventListener("resize", resizeAccordion);
-
-        function resizeAccordion(){
-            if (window.innerWidth > 600 && !menuOpen) setMenuOpen(true);
-        }
-
-        setIsLoading(true);
-
-        if (!auth.user) {
-            router.push({pathname: "/apply/login", query: {returnStage: props.query.stage}});
-            return;
-        }
-
-        async function onLoad() {
-            const allAppsRes: any = await API.graphql(graphqlOperation(queries.listAppOct2020s));
-            const allApps: any[] = allAppsRes.data.listAppOct2020s.items;
-
-            // if no application exists, create one
-            if (allApps.length === 0) {
-                const newAppRes: any = await API.graphql(graphqlOperation(mutations.createAppOct2020, {
-                    input: {
-                        submitted1: false,
-                        submitted2: false
-                    }
-                }));
-                const newApp: any = newAppRes.data.createAppOct2020;
-                await axios.post("/api/AppOct2020/createApplication", {
-                    id: newApp.id,
-                    email: auth.user.attributes.email
-                }, {
-                    headers: {
-                        "Authorization": `token ${process.env.NEXT_PUBLIC_API_KEY}`
-                    }
-                });
-                setAppID(newApp.id);
-
-                if (openSection !== 0) {
-                    changeSection(0);
-                }
-
-            } else {
-                const currApp = allApps[0];
-
-                setSubmitted1(currApp.submitted1);
-                setFirstName(currApp.firstName || "");
-                setLastName(currApp.lastName || "");
-                setPhoneNumber(currApp.phoneNumber || "");
-                setChannel(currApp.channel || "");
-                setReferralCode(currApp.referralCode || "");
-
-                setSubmitted2(currApp.submitted2);
-                setEssay1(currApp.essay1 || "");
-                setEssay2(currApp.essay2 || "");
-                setEssay3(currApp.essay3 || "");
-                setEssay4(currApp.essay4 || "");
-
-                setAppID(currApp.id);
-
-                // if submission complete, check for status through AirTable
-                if (currApp.submitted1 && currApp.submitted2) {
-                    axios.get("/api/AppOct2020/checkStatus", {
-                        params: {
-                            id: currApp.id
-                        },
-                        headers: {
-                            "Authorization": `token ${process.env.NEXT_PUBLIC_API_KEY}`
-                        }
-                    }).then(res => {
-                        setStatus(res.data.data.status);
-                    });
-                } else if (currApp.submitted1 + currApp.submitted2 < openSection) {
-                    changeSection(currApp.submitted1 + currApp.submitted2);
-                }
-
-            }
-            setIsLoading(false);
-            setMenuOpen(true);
-        }
-
-        onLoad();
-
-        return () => window.removeEventListener("resize", resizeAccordion);
-    }, []);
 
     return (
         <div className="flex-col sm:flex-row flex items-stretch">
@@ -518,19 +519,29 @@ export default function ApplyIndex(props: {query: {[key: string]: string}}) {
                         </>
                     ), 2: (
                         <>
-                            {status === "Accepted" ? <ApplyAccepted/> : "Rejected" ? (
-                                <div className="content">
-                                    <h2 className="heading">Thanks for applying</h2>
-                                    <p>Unfortunately, we're unable to offer you a spot in the October 2020 session of Life Changing School.</p>
-                                    <p>Please consider applying for our January or April 2021 sessions! We'll send you an email when applications open up.</p>
-                                    <p>As always, you can reach out to us at <a href="mailto:hello@lifechangingschool.org">hello@lifechangingschool.org</a> if you have any questions!</p>
-                                </div>
-                            ) : (
-                                <div className="content">
-                                    <p>We're currently reviewing your application. You'll get an email notification when decisions are released.</p>
-                                    <p>Reach out to us at <a href="mailto:hello@lifechangingschool.org">hello@lifechangingschool.org</a> if you have any questions!</p>
-                                </div>
-                            )}
+                            {isLoading ? <Skeleton count={4}/> : {
+                                "Accepted": <ApplyAccepted/>,
+                                "Rejected": (
+                                    <div className="content">
+                                        <h2 className="heading">Thanks for applying</h2>
+                                        <p>Unfortunately, we're unable to offer you a spot in the October 2020 session of Life Changing School.</p>
+                                        <p>Please consider applying for our January or April 2021 sessions! We'll send you an email when applications open up.</p>
+                                        <p>As always, you can reach out to us at <a href="mailto:hello@lifechangingschool.org">hello@lifechangingschool.org</a> if you have any questions!</p>
+                                    </div>
+                                ), "Payment Submitted": (
+                                    <div className="content">
+                                        <h2 className="heading">Your spot has been confirmed</h2>
+                                        <p>We've received your payment and your spot in the October 2020 session of Life Changing School has been confirmed!</p>
+                                        <p>Check your email for an invitation to our Thinkific course, which will serve as the home base for the program.</p>
+                                        <p>Reach out to us at <a href="mailto:hello@lifechangingschool.org">hello@lifechangingschool.org</a> if you have any questions!</p>
+                                    </div>
+                                ), "In Progress": (
+                                    <div className="content">
+                                        <p>We're currently reviewing your application. You'll get an email notification when decisions are released.</p>
+                                        <p>Reach out to us at <a href="mailto:hello@lifechangingschool.org">hello@lifechangingschool.org</a> if you have any questions!</p>
+                                    </div>
+                                )
+                            }[status]}
                         </>
                     )
                 }[openSection]}
