@@ -25,9 +25,11 @@ export default function ApplyLogin(){
     }
 
     useEffect(() => {
+        console.log(router.query);
+
         function checkRedirect(e = null) {
             if (auth.user || e) {
-                router.push({pathname: "/apply", query: {message: "Already logged in"}});
+                router.push({pathname: "/apply", query: {message: "Already logged in", stage: router.query.returnStage}});
             }
         }
 

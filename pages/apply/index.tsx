@@ -9,10 +9,10 @@ import * as mutations from "../../graphql/mutations";
 import {FaCheckCircle} from "react-icons/fa";
 import LimitedTextarea from "../../components/limited-textarea";
 
-export default function ApplyIndex() {
+export default function ApplyIndex(props: {query: {[key: string]: string}}) {
     const auth = useAuth();
     const router = useRouter();
-    const [openSection, setOpenSection] = useState<number>(0);
+    const [openSection, setOpenSection] = useState<number>(props.query.stage ? (+props.query.stage <= 2 ? +props.query.stage : 0) : 0);
 
     const [appID, setAppID] = useState<string>(null);
     const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -49,7 +49,7 @@ export default function ApplyIndex() {
     const [essay4, setEssay4] = useState<string>("");
 
     // check status
-    const [status, setStatus] = useState<string>("inprogress");
+    const [status, setStatus] = useState<string>("");
 
     async function saveSection1(submit: boolean) {
         setJustSaved(false);
@@ -191,16 +191,19 @@ export default function ApplyIndex() {
             channel: false,
             referralCode: false
         });
+        router.push({pathname: "/apply", query: {stage: i}});
         setOpenSection(i);
     }
 
     useEffect(() => {
+        setIsLoading(true);
+
         if (!auth.user) {
-            router.push("/apply/login");
+            router.push({pathname: "/apply/login", query: {returnStage: props.query.stage}});
+            return;
         }
 
         async function onLoad() {
-            setIsLoading(true);
             const allAppsRes: any = await API.graphql(graphqlOperation(queries.listAppOct2020s));
             const allApps: any[] = allAppsRes.data.listAppOct2020s.items;
 
@@ -222,6 +225,11 @@ export default function ApplyIndex() {
                     }
                 });
                 setAppID(newApp.id);
+
+                if (openSection !== 0) {
+                    changeSection(0);
+                }
+
                 setIsLoading(false);
             } else {
                 const currApp = allApps[0];
@@ -253,6 +261,8 @@ export default function ApplyIndex() {
                     }).then(res => {
                         setStatus(res.data.data.status);
                     });
+                } else if (currApp.submitted1 + currApp.submitted2 < openSection) {
+                    changeSection(currApp.submitted1 + currApp.submitted2);
                 }
 
                 setIsLoading(false);
@@ -293,14 +303,14 @@ export default function ApplyIndex() {
                     2: "Check here to see if your application has been accepted."
                 }[openSection]}</p>
                 <hr/>
-                {isLoading && <p className="aside ~info mb-6">Loading...</p>}
-                {justSaved && <p className="aside ~positive mb-6">Successfully saved application</p>}
+                {isLoading && <p className="aside ~info">Loading...</p>}
+                {justSaved && <p className="aside ~positive">Successfully saved application</p>}
                 {Object.keys(errors).some(error => errors[error]) &&
-                <p className="aside ~critical mb-6">Fill in all fields with valid values to save or submit.</p>}
+                <p className="aside ~critical">Fill in all fields with valid values to save or submit.</p>}
                 {{
                     0: (
                         <>
-                            {submitted1 && <p className="aside ~info">You've already submitted this section of the application and can no longer make any changes.</p>}
+                            {submitted1 && <p className="aside ~info">You've submitted this section of the application and can no longer make any changes. <button className="underline" onClick={() => changeSection(1)}>Go to the next section</button></p>}
                             <form action="">
                                 <div className="flex justify-between -mx-2">
                                     <div className="flex-1 mx-2">
@@ -439,7 +449,7 @@ export default function ApplyIndex() {
                         </>
                     ), 1: (
                         <>
-                            {submitted2 && <p className="aside ~info">You've submitted this section of the application and can no longer make any changes.</p>}
+                            {submitted2 && <p className="aside ~info">You've submitted this section of the application and can no longer make any changes. <button className="underline" onClick={() => changeSection(2)}>Check your application status</button></p>}
                             {essayError && <p className="aside ~critical">Complete all essays to submit.</p>}
                             <form>
                                 <label className="label">Tell about a successful startup that you find cool. What do you
@@ -492,12 +502,24 @@ export default function ApplyIndex() {
                         </>
                     ), 2: (
                         <>
-                            <p>{status ? status : "not submitted yet"}</p>
+                            <p>{status}</p>
                         </>
                     )
                 }[openSection]}
-
+                {isLoading && <p className="aside ~info">Loading...</p>}
+                {justSaved && <p className="aside ~positive">Successfully saved application</p>}
+                {Object.keys(errors).some(error => errors[error]) &&
+                <p className="aside ~critical">Fill in all fields with valid values to save or submit.</p>}
+                <hr className="sep"/>
             </div>
         </div>
     )
+}
+
+export async function getServerSideProps(context){
+    return {
+        props: {
+            query: context.query,
+        }
+    }
 }
