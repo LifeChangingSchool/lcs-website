@@ -23,7 +23,7 @@
     "react-dom": "16.13.1",
     "react-hook-form": "^6.4.1",
     "react-icons": "^3.11.0",
-    "react-robust-accordion": "^0.2.0",
+    "react-robust-accordion": "^0.3.0",
     "typescript": "^3.9.7",
     "validator": "^13.1.1"
   },

@@ -17,7 +17,7 @@ export default function ApplyNavbar() {
 
     return (
         <div className="w-full flex h-16 items-center border-b mb-8">
-            <p className="supra">Apply to LCS</p>
+            <p className="supra hidden sm:block">Apply to LCS</p>
             <div className="flex ml-auto items-center">
                 {auth.user ? (
                     <>

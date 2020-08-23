@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import {SyntheticEvent, useEffect, useState} from "react";
 import {useAuth} from "../../lib/authlib";
 import {useRouter} from "next/router";
 import axios from "axios";
@@ -6,14 +6,16 @@ import validator from "validator";
 import {API, graphqlOperation} from "aws-amplify";
 import * as queries from "../../graphql/queries";
 import * as mutations from "../../graphql/mutations";
-import {FaCheckCircle} from "react-icons/fa";
+import {FaCaretDown, FaCaretUp, FaCheckCircle} from "react-icons/fa";
 import LimitedTextarea from "../../components/limited-textarea";
 import ApplyAccepted from "../../components/applyAccepted";
+import Accordion from "react-robust-accordion";
 
 export default function ApplyIndex(props: {query: {[key: string]: string}}) {
     const auth = useAuth();
     const router = useRouter();
     const [openSection, setOpenSection] = useState<number>(props.query.stage ? (+props.query.stage <= 2 ? +props.query.stage : 0) : 0);
+    const [menuOpen, setMenuOpen] = useState<boolean>(false);
 
     const [appID, setAppID] = useState<string>(null);
     const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -197,6 +199,13 @@ export default function ApplyIndex(props: {query: {[key: string]: string}}) {
     }
 
     useEffect(() => {
+
+        window.addEventListener("resize", resizeAccordion);
+
+        function resizeAccordion(){
+            if (window.innerWidth > 600 && !menuOpen) setMenuOpen(true);
+        }
+
         setIsLoading(true);
 
         if (!auth.user) {
@@ -231,7 +240,6 @@ export default function ApplyIndex(props: {query: {[key: string]: string}}) {
                     changeSection(0);
                 }
 
-                setIsLoading(false);
             } else {
                 const currApp = allApps[0];
 
@@ -266,37 +274,44 @@ export default function ApplyIndex(props: {query: {[key: string]: string}}) {
                     changeSection(currApp.submitted1 + currApp.submitted2);
                 }
 
-                setIsLoading(false);
             }
+            setIsLoading(false);
+            setMenuOpen(true);
         }
 
         onLoad();
+
+        return () => window.removeEventListener("resize", resizeAccordion);
     }, []);
 
     return (
-        <div className="flex items-stretch">
-            <div className="w-64 border-r -mt-8 pt-8 flex-shrink-0">
-                <p className="supra mb-4">Application steps</p>
-                <div>
-                    <button className={`portal my-1 ~info ${openSection === 0 ? "active" : ""}`}
-                       onClick={() => changeSection(0)}>
-                        {submitted1 && <FaCheckCircle className="mr-2"/>}
-                        Basic info
-                    </button>
+        <div className="flex-col sm:flex-row flex items-stretch">
+            <Accordion label={(
+                <div className="sm:hidden flex justify-between items-center h-12">Application menu {menuOpen ? <FaCaretUp/> : <FaCaretDown/>}</div>
+            )} openState={menuOpen} setOpenState={setMenuOpen} className="-mt-8 sm:border-r mb-8 sm:mb-0">
+                <div className="w-full sm:w-64 pt-8 bg-gray-100 px-4 pb-4 border sm:px-0 sm:pb-0 sm:bg-white sm:border-0">
+                    <p className="supra mb-4">Application steps</p>
+                    <div>
+                        <button className={`portal my-1 ~info ${openSection === 0 ? "active" : ""}`}
+                           onClick={() => changeSection(0)}>
+                            {submitted1 && <FaCheckCircle className="mr-2"/>}
+                            Basic info
+                        </button>
+                    </div>
+                    <div>
+                        <button className={`portal my-1 ~info ${openSection === 1 ? "active" : ""}`}
+                           onClick={() => changeSection(1)} disabled={!submitted1}>
+                            {submitted2 && <FaCheckCircle className="mr-2"/>}
+                            Written responses
+                        </button>
+                    </div>
+                    <hr/>
+                    <p className="supra mb-4">Application status</p>
+                    <button className={`portal my-1 ~info ${openSection === 2 ? "active" : ""}`}
+                       onClick={() => changeSection(2)} disabled={!submitted2}>Check status</button>
                 </div>
-                <div>
-                    <button className={`portal my-1 ~info ${openSection === 1 ? "active" : ""}`}
-                       onClick={() => changeSection(1)} disabled={!submitted1}>
-                        {submitted2 && <FaCheckCircle className="mr-2"/>}
-                        Written responses
-                    </button>
-                </div>
-                <hr/>
-                <p className="supra mb-4">Application status</p>
-                <button className={`portal my-1 ~info ${openSection === 2 ? "active" : ""}`}
-                   onClick={() => changeSection(2)} disabled={!submitted2}>Check status</button>
-            </div>
-            <div className="w-full ml-8">
+            </Accordion>
+            <div className="w-full sm:ml-8">
                 <h1 className="heading">{{0: "Basic info", 1: "Written responses", 2: "Check status"}[openSection]}</h1>
                 <p className="support">{{
                     0: "Submit some basic info to access the second part of the application.",
