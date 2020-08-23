@@ -8,6 +8,7 @@ import * as queries from "../../graphql/queries";
 import * as mutations from "../../graphql/mutations";
 import {FaCheckCircle} from "react-icons/fa";
 import LimitedTextarea from "../../components/limited-textarea";
+import ApplyAccepted from "../../components/applyAccepted";
 
 export default function ApplyIndex(props: {query: {[key: string]: string}}) {
     const auth = useAuth();
@@ -502,7 +503,19 @@ export default function ApplyIndex(props: {query: {[key: string]: string}}) {
                         </>
                     ), 2: (
                         <>
-                            <p>{status}</p>
+                            {status === "Accepted" ? <ApplyAccepted/> : "Rejected" ? (
+                                <div className="content">
+                                    <h2 className="heading">Thanks for applying</h2>
+                                    <p>Unfortunately, we're unable to offer you a spot in the October 2020 session of Life Changing School.</p>
+                                    <p>Please consider applying for our January or April 2021 sessions! We'll send you an email when applications open up.</p>
+                                    <p>As always, you can reach out to us at <a href="mailto:hello@lifechangingschool.org">hello@lifechangingschool.org</a> if you have any questions!</p>
+                                </div>
+                            ) : (
+                                <div className="content">
+                                    <p>We're currently reviewing your application. You'll get an email notification when decisions are released.</p>
+                                    <p>Reach out to us at <a href="mailto:hello@lifechangingschool.org">hello@lifechangingschool.org</a> if you have any questions!</p>
+                                </div>
+                            )}
                         </>
                     )
                 }[openSection]}
