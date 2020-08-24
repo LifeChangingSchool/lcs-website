@@ -535,7 +535,7 @@ export default function ApplyIndex(props: {query: {[key: string]: string}}) {
                                         <p>Check your email for an invitation to our Thinkific course, which will serve as the home base for the program.</p>
                                         <p>Reach out to us at <a href="mailto:hello@lifechangingschool.org">hello@lifechangingschool.org</a> if you have any questions!</p>
                                     </div>
-                                ), "In Progress": (
+                                ), "submitted": (
                                     <div className="content">
                                         <p>We're currently reviewing your application. You'll get an email notification when decisions are released.</p>
                                         <p>Reach out to us at <a href="mailto:hello@lifechangingschool.org">hello@lifechangingschool.org</a> if you have any questions!</p>
