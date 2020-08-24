@@ -260,7 +260,10 @@ export default function ApplyIndex(props: {query: {[key: string]: string}}) {
                 }
             }));
 
-            if (submit) setSubmitted2(true);
+            if (submit) {
+                setSubmitted2(true);
+                setStatus("submitted");
+            }
 
             setIsLoading(false);
             setJustSaved(true);
