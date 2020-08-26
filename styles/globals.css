@@ -2,11 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+:root{
+  --lcs-blue: #26828c;
+  --lcs-yellow: #f7bc2e;
+  --lcs-red: #c63945;
+  --startuptree-green: #00be80;
+  --color-content: #000;
+  --shield-padding-x: 0.75rem;
+  --shield-padding-y: 0.75rem;
+}
+
 html,
 body {
   padding: 0;
   margin: 0;
   font-size: 20px;
+  overflow-x: hidden;
 }
 
 a {
@@ -34,6 +45,10 @@ h1.heading {
   @apply mb-2;
 }
 
+.heading {
+  font-family: "Rubik", "Inter", sans-serif;
+}
+
 button.button.button-big{
   @apply w-full p-4 text-center my-6 block;
 }
@@ -44,4 +59,75 @@ button.button.button-big{
 
 .aside {
   @apply mb-6;
+}
+
+.lcs-container{
+  @apply max-w-4xl mx-auto;
+}
+
+.font-accent{
+  font-family: "Rubik", "Inter", sans-serif;
+}
+
+.lcs-cta-button{
+  background-color: var(--lcs-blue);
+  font-family: "Rubik", "Inter", sans-serif;
+  @apply text-white font-bold py-2 px-6 inline-flex items-center uppercase justify-center;
+}
+
+.lcs-text-blue{
+  color: var(--lcs-blue);
+}
+
+.lcs-text-yellow{
+  color: var(--lcs-yellow);
+}
+
+.lcs-text-red{
+  color: var(--lcs-red);
+}
+
+.lcs-bg-blue{
+  background-color: var(--lcs-blue);
+  color: #fff;
+}
+
+.lcs-bg-yellow{
+  background-color: var(--lcs-yellow);
+  color: #fff;
+}
+
+.lcs-bg-red{
+  background-color: var(--lcs-red);
+  color: #fff;
+}
+
+.lcs-bg-green{
+  background-color: var(--startuptree-green);
+  color: #fff;
+}
+
+.lcs-uppercase-bold{
+  font-family: "Rubik", "Inter", sans-serif;
+  @apply font-bold uppercase;
+}
+
+.lcs-grid-item{
+  @apply border rounded-sm p-4 my-4;
+}
+
+@media (min-width: 640px){
+  .lcs-lander-grid{
+    @apply grid grid-cols-2 gap-3;
+  }
+
+  .lcs-grid-item{
+    @apply my-0;
+  }
+}
+
+@media (min-width: 760px){
+  .lcs-lander-grid{
+    @apply grid-cols-3;
+  }
 }
