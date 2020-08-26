@@ -3,6 +3,8 @@ import { useAuth } from "../../lib/authlib";
 import { useRouter } from "next/router";
 import {useEffect, useState} from "react";
 import Link from "next/link";
+import Head from "next/head";
+import getTitle from "../../lib/titlelib";
 
 export default function ApplySignup(){
     const auth = useAuth();
@@ -52,6 +54,9 @@ export default function ApplySignup(){
 
     return (
         <div className="max-w-sm mx-auto">
+            <Head>
+                <title>{getTitle("Sign up")}</title>
+            </Head>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <h1 className="heading">Start your application today</h1>
                 <p className="support">Create an account in our portal to submit your application</p>
@@ -79,7 +84,7 @@ export default function ApplySignup(){
 
                 <div className="flex items-center">
                     <p>Already have an account?</p>
-                    <Link href="/apply/login"><a className="button ml-auto">Log in</a></Link>
+                    <Link href={`/apply/login?returnStage=${router.query.returnStage}`}><a className="button ml-auto">Log in</a></Link>
                 </div>
             </form>
         </div>

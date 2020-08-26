@@ -3,6 +3,8 @@ import { useAuth } from "../../lib/authlib";
 import { useRouter } from "next/router";
 import {useEffect, useState} from "react";
 import Link from "next/link";
+import Head from "next/head";
+import getTitle from "../../lib/titlelib";
 
 export default function ApplyLogin(){
     const auth = useAuth();
@@ -44,6 +46,9 @@ export default function ApplyLogin(){
 
     return (
         <div className="max-w-sm mx-auto">
+            <Head>
+                <title>{getTitle("Log in")}</title>
+            </Head>
             <h1 className="heading">Log in</h1>
             <p className="support">Resume your existing application</p>
             <hr/>

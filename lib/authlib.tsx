@@ -14,6 +14,7 @@ export const useAuth = () => {
 
 function useProvideAuth() {
     const [user, setUser] = useState(null);
+    const [authLoaded, setAuthLoaded] = useState<boolean>(false);
 
     const signin = (email: string, password: string): Promise<any> => {
         return Auth.signIn(email, password).then(res => {
@@ -38,15 +39,17 @@ function useProvideAuth() {
     useEffect(() => {
         Auth.currentAuthenticatedUser().then(res => {
             setUser(res);
+            setAuthLoaded(true);
             window.dispatchEvent(new CustomEvent("authSuccess", {detail: res}));
         }).catch(e => {
-            console.log("not yet logged in");
+            setAuthLoaded(true);
             window.dispatchEvent(new Event("authFail"));
         });
     }, []);
 
     return {
         user,
+        authLoaded,
         signin,
         signup,
         signout,

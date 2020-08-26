@@ -11,6 +11,8 @@ import LimitedTextarea from "../../components/limited-textarea";
 import ApplyAccepted from "../../components/applyAccepted";
 import Accordion from "react-robust-accordion";
 import Skeleton from "react-loading-skeleton";
+import Head from "next/head";
+import getTitle from "../../lib/titlelib";
 
 export default function ApplyIndex(props: {query: {[key: string]: string}}) {
     const auth = useAuth();
@@ -65,8 +67,8 @@ export default function ApplyIndex(props: {query: {[key: string]: string}}) {
 
         setIsLoading(true);
 
-        if (!auth.user) {
-            router.push({pathname: "/apply/login", query: {returnStage: props.query.stage}});
+        if (auth.authLoaded && !auth.user) {
+            router.push({pathname: "/apply/signup", query: {returnStage: props.query.stage}});
             return;
         }
 
@@ -139,7 +141,7 @@ export default function ApplyIndex(props: {query: {[key: string]: string}}) {
         onLoad();
 
         return () => window.removeEventListener("resize", resizeAccordion);
-    }, []);
+    }, [auth]);
 
     async function saveSection1(submit: boolean) {
         setJustSaved(false);
@@ -290,6 +292,9 @@ export default function ApplyIndex(props: {query: {[key: string]: string}}) {
 
     return (
         <div className="flex-col sm:flex-row flex items-stretch">
+            <Head>
+                <title>{getTitle("Application Portal")}</title>
+            </Head>
             <Accordion label={(
                 <div className="sm:hidden flex justify-between items-center h-12">Application menu {menuOpen ? <FaCaretUp/> : <FaCaretDown/>}</div>
             )} openState={menuOpen} setOpenState={setMenuOpen} className="-mt-8 sm:border-r mb-8 sm:mb-0">

@@ -17,9 +17,11 @@ export default function Navbar() {
                             }}>Life <br className="sm:hidden"/>Changing <br className="sm:hidden"/>School</span>
                         </a></Link>
                         <div className={`absolute lg:relative right-0 self-start lg:self-auto mt-16 flex-col flex lg:mt-0 lg:flex-row lg:ml-auto bg-gray-100 lg:bg-transparent p-4 lg:p-0 ${menuOpen ? "" : "hidden lg:flex"}`}>
+                            <Link href="/"><a className="lg:ml-4 my-1">Cost</a></Link>
+                            <Link href="/"><a className="lg:ml-4 my-1">Curriculum</a></Link>
+                            <Link href="/"><a className="lg:ml-4 my-1">FAQs</a></Link>
                             <Link href="/"><a className="lg:ml-4 my-1">About</a></Link>
                             <Link href="/"><a className="lg:ml-4 my-1">Blog</a></Link>
-                            <Link href="/"><a className="lg:ml-4 my-1">Contact</a></Link>
                         </div>
                         <Link href="/apply"><a className="lcs-cta-button ml-auto lg:ml-4">Apply</a></Link>
                         <button className="ml-4 lg:hidden" onClick={() => setMenuOpen(!menuOpen)}>
