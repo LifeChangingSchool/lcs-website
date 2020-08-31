@@ -15,6 +15,13 @@
       "headshot": "img/uploads/sheryl.jpg"
     },
     {
+      "name": "Samson Zhang",
+      "title": "LCS '20",
+      "message": "Every class, from human-centered design on day two...to a class about identifying and chasing personal strengths, to the final classes about marketing and funding, gave another glimpse into what entrepreneurship is like and how successful entrepreneurs think.",
+      "headshot": "img/uploads/headshot.jpg",
+      "note": ""
+    },
+    {
       "name": "Ana Sofia",
       "title": "LCS '18",
       "message": "Now I have a lot of people that can help me out with anything I need. Having all this people around me just make me realize how much I’m going to miss them.",
@@ -49,13 +56,6 @@
       "headshot": "img/uploads/khamin.png",
       "name": "Khamin Nathabheem",
       "title": "LCS '15"
-    },
-    {
-      "name": "Samson Zhang",
-      "title": "LCS '20",
-      "message": "Every class, from human-centered design on day two...to a class about identifying and chasing personal strengths, to the final classes about marketing and funding, gave another glimpse into what entrepreneurship is like and how successful entrepreneurs think.",
-      "headshot": "img/uploads/headshot.jpg",
-      "note": ""
     }
   ]
 }
