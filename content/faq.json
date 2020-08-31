@@ -3,6 +3,30 @@
     {
       "question": "What are you looking for in your applicants?",
       "answer": "The admissions team is looking for talented, highly-motivated students who are interested in attending the program because they have a passion for learning and problem-solving and wish to enrich their knowledge of programming and entrepreneurship to solve real world problems."
+    },
+    {
+      "question": "I am a senior. Can I still participate this summer?",
+      "answer": "Yes, you can still qualify and participate the summer between your high school and college."
+    },
+    {
+      "question": "When will I be notified of an admission decision?",
+      "answer": "It normally takes two to three weeks to receive a decision after all application materials have been received."
+    },
+    {
+      "question": "Will participating in this program help me get into Cornell University?",
+      "answer": "Like any exceptional, extracurricular activity, participation in this summer program can help you present yourself as a strong candidate in your college applications. Further, you can potentially submit a copy of the evaluation letter you receive from your instructors upon completion of the program as a supplement to your college application."
+    },
+    {
+      "question": "Where are classes held?",
+      "answer": "Classes and workshops are held online, you can watch the courses from the comfort of your home or anywhere in the world."
+    },
+    {
+      "question": "Who teaches the classes?",
+      "answer": "Classes in over a dozen subjects and workshops are taught and lead by company founders, young professionals and Cornell students with direct entrepreneurial experience and applicable knowledge."
+    },
+    {
+      "question": "How much do class materials cost?",
+      "answer": "All your need is a laptop or desktop. All other class materials will be provided to you!"
     }
   ]
 }
