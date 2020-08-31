@@ -6,8 +6,6 @@ public_folder: img/uploads
 collections:
   - name: testimonials_collection
     label: Testimonials
-    media_folder: public/img/headshots
-    public_folder: img/headshots
     files:
       - label: "Testimonials File"
         name: "testimonials_file"
