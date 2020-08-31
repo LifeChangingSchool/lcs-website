@@ -115,7 +115,7 @@ export default function Home() {
             <hr className="my-16"/>
             <h2 className="heading">Hear from alumni and parents</h2>
             <div className="md:grid md:grid-cols-2 md:gap-x-6">
-                {Testimonials.map(t => (
+                {Testimonials.testimonials.map(t => (
                     <LanderTestimonial name={t.name} title={t.title} imgPath={t.imgName} text={(
                         <>
                             <p>{t.message}</p>
@@ -136,7 +136,7 @@ export default function Home() {
                 <hr className="md:hidden"/>
                 <div className="md:pb-0 md:border-b-0 md:pl-6">
                     <h2 className="heading mb-4">FAQs</h2>
-                    {FAQ.map(f =>
+                    {FAQ.faq.map(f =>
                         <LanderFAQ question={f.question} answer={f.answer}/>
                     )}
                 </div>
