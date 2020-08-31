@@ -116,7 +116,7 @@ export default function Home() {
             <h2 className="heading">Hear from alumni and parents</h2>
             <div className="md:grid md:grid-cols-2 md:gap-x-6">
                 {Testimonials.testimonials.map(t => (
-                    <LanderTestimonial name={t.name} title={t.title} imgPath={t.imgName} text={(
+                    <LanderTestimonial name={t.name} title={t.title} imgPath={t.headshot} text={(
                         <>
                             <p>{t.message}</p>
                             <p className="italic">{t.note}</p>

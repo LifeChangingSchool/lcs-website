@@ -6,6 +6,8 @@ public_folder: img/uploads
 collections:
   - name: testimonials_collection
     label: Testimonials
+    media_folder: public/img/headshots
+    public_folder: img/headshots
     files:
       - label: "Testimonials File"
         name: "testimonials_file"
@@ -18,7 +20,7 @@ collections:
               - { label: Name, name: name, widget: string }
               - { label: Title, name: title, widget: string }
               - { label: Message, name: message, widget: string }
-              - { label: Note, name: note, widget: string }
+              - { label: Note, name: note, widget: string, required: false }
               - label: Headshot
                 name: headshot
                 widget: image
