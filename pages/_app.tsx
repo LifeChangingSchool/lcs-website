@@ -7,6 +7,7 @@ import Amplify from 'aws-amplify';
 import config from '../aws-exports';
 import ApplyNavbar from "../components/apply-navbar";
 import Navbar from "../components/navbar";
+import Footer from "../components/footer";
 
 Amplify.configure(config);
 
@@ -24,6 +25,7 @@ function MyApp({Component, pageProps}: AppProps) {
                     </ProvideAuth>
                 ) : <Component {...pageProps} />}
             </div>
+            <Footer/>
         </>
     )
 }
