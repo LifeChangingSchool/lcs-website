@@ -1,9 +1,11 @@
 import Link from "next/link";
 import {FaBars} from "react-icons/fa";
 import {useState} from "react";
+import {useRouter} from "next/router";
 
 export default function Navbar() {
     const [menuOpen, setMenuOpen] = useState<boolean>(false);
+    const router = useRouter();
 
     return (
         <>
@@ -21,8 +23,8 @@ export default function Navbar() {
                             <Link href="/"><a className="lg:ml-4 my-1">About</a></Link>
                             <Link href="/"><a className="lg:ml-4 my-1">Blog</a></Link>
                         </div>
-                        <Link href="/apply"><a className="lcs-cta-button ml-auto lg:ml-4">Apply</a></Link>
-                        <button className="ml-4 lg:hidden" onClick={() => setMenuOpen(!menuOpen)}>
+                        {router.route.substr(0,6) !== "/apply" && <Link href="/apply"><a className="lcs-cta-button ml-auto lg:ml-4">Apply</a></Link>}
+                        <button className={`${router.route.substr(0,6) === "/apply" ? "ml-auto" : "ml-4"} lg:hidden`} onClick={() => setMenuOpen(!menuOpen)}>
                             <FaBars/>
                         </button>
                     </div>
