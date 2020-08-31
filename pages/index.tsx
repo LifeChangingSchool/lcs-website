@@ -3,8 +3,9 @@ import Link from "next/link";
 import LanderCTA from "../components/lander-cta";
 import {FaArrowLeft, FaArrowRight, FaBook, FaChalkboardTeacher, FaRocket, FaToolbox, FaUserCheck} from "react-icons/fa";
 import LanderTestimonial from "../components/lander-testimonial";
-import Accordion from "react-robust-accordion";
 import LanderFAQ from "../components/lander-faq";
+import Testimonials from "../content/testimonials.json";
+import FAQ from "../content/faq.json";
 
 export default function Home() {
 
@@ -114,13 +115,14 @@ export default function Home() {
             <hr className="my-16"/>
             <h2 className="heading">Hear from alumni and parents</h2>
             <div className="md:grid md:grid-cols-2 md:gap-x-6">
-                <LanderTestimonial name="Jean Turban" title="LCS '15" imgPath="jean.jpg" text={(
-                    <>
-                        <p>Meeting so many successful people who are pursuing their dream has pushed me and motivated me to do the same.</p>
-                        <p className="italic">Today, Jean is a masters student at Cornell and the founder and CEO of Titan Analytics.</p>
-                    </>
-                )}/>
-                <LanderTestimonial name="Sheryl Chorne" title="LCS '20" imgPath="sheryl.jpg" text="I entered this class with minimal knowledge on how to start a business, let alone come up with an idea or product to pursue. Jenna took us through every step of the startup process and always had such a positive attitude."/>
+                {Testimonials.map(t => (
+                    <LanderTestimonial name={t.name} title={t.title} imgPath={t.imgName} text={(
+                        <>
+                            <p>{t.message}</p>
+                            <p className="italic">{t.note}</p>
+                        </>
+                    )}/>
+                ))}
             </div>
             <div className="flex">
                 <button className="hover:bg-gray-300 p-4 border ml-auto"><FaArrowLeft/></button>
@@ -134,7 +136,9 @@ export default function Home() {
                 <hr className="md:hidden"/>
                 <div className="md:pb-0 md:border-b-0 md:pl-6">
                     <h2 className="heading mb-4">FAQs</h2>
-                    <LanderFAQ question="What are you looking for in your applicants?" answer="The admissions team is looking for talented, highly-motivated students who are interested in attending the program because they have a passion for learning and problem-solving and wish to enrich their knowledge of programming and entrepreneurship to solve real world problems."/>
+                    {FAQ.map(f =>
+                        <LanderFAQ question={f.question} answer={f.answer}/>
+                    )}
                 </div>
             </div>
         </div>
