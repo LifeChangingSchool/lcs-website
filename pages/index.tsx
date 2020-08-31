@@ -3,6 +3,8 @@ import Link from "next/link";
 import LanderCTA from "../components/lander-cta";
 import {FaArrowLeft, FaArrowRight, FaBook, FaChalkboardTeacher, FaRocket, FaToolbox, FaUserCheck} from "react-icons/fa";
 import LanderTestimonial from "../components/lander-testimonial";
+import Accordion from "react-robust-accordion";
+import LanderFAQ from "../components/lander-faq";
 
 export default function Home() {
 
@@ -51,7 +53,7 @@ export default function Home() {
             <div className="my-12">
                 <div className="-mx-2 flex justify-around">
                     {Array.apply(0, Array(6)).map((_, i) => (
-                        <div className={`mx-1 rounded-full w-full ${i >= 2 ? "lcs-bg-yellow" : "lcs-bg-red"} h-2`}/>
+                        <div className={`mx-1 rounded-full w-full ${i >= 2 ? "lcs-bg-yellow" : "lcs-bg-red"} h-2`} key={i}/>
                     ))}
                 </div>
                 <div className="sm:flex mt-2">
@@ -127,11 +129,12 @@ export default function Home() {
             <LanderCTA/>
             <div className="md:grid md:grid-cols-2">
                 <div className="md:pb-0 md:border-b-0 md:pr-6 md:border-r">
-                    <h2 className="heading">What's in the course</h2>
+                    <h2 className="heading mb-4">What's in the course</h2>
                 </div>
                 <hr className="md:hidden"/>
                 <div className="md:pb-0 md:border-b-0 md:pl-6">
-                    <h2 className="heading">FAQs</h2>
+                    <h2 className="heading mb-4">FAQs</h2>
+                    <LanderFAQ question="What are you looking for in your applicants?" answer="The admissions team is looking for talented, highly-motivated students who are interested in attending the program because they have a passion for learning and problem-solving and wish to enrich their knowledge of programming and entrepreneurship to solve real world problems."/>
                 </div>
             </div>
         </div>
