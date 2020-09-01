@@ -2,6 +2,8 @@ import matter from "gray-matter";
 import Link from "next/link";
 import {format} from "date-fns";
 import LCSSEO from "../../lib/seolib";
+import GeneralCTA from "../../components/general-cta";
+import LanderCTA from "../../components/lander-cta";
 
 export default function BlogIndex({posts}) {
     return (
@@ -18,7 +20,7 @@ export default function BlogIndex({posts}) {
                     </div>
                 </div>
                 <div className="w-64 flex-shrink-0"/>
-                <div className="md:pl-8">
+                <div className="md:pl-8 pb-16">
                     {posts && posts.map((post) => (
                         <div key={post.slug}
                              className="my-8 p-6 shadow-md hover:shadow-lg transition transition-shadow">
@@ -34,6 +36,7 @@ export default function BlogIndex({posts}) {
                     ))}
                 </div>
             </div>
+            <GeneralCTA/>
         </>
     )
 }

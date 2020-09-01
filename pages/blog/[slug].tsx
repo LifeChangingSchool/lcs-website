@@ -5,6 +5,7 @@ import Link from "next/link";
 import LCSSEO from "../../lib/seolib";
 import LanderRedContainer from "../../components/lander-red-container";
 import LanderCTA from "../../components/lander-cta";
+import GeneralCTA from "../../components/general-cta";
 
 export default function BlogPost({frontmatter, markdownBody}) {
     return (
@@ -20,7 +21,8 @@ export default function BlogPost({frontmatter, markdownBody}) {
             <div className="content max-w-xl mx-auto">
                 <ReactMarkdown source={markdownBody}/>
             </div>
-            <LanderCTA className="mt-12"/>
+            <GeneralCTA className="mt-12"/>
+            <LanderCTA/>
         </main>
     )
 }
