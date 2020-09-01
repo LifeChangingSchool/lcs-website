@@ -12,8 +12,6 @@ import Accordion from "react-robust-accordion";
 import ReactMarkdown from "react-markdown";
 
 export default function Home({ courseContent }) {
-    console.log(courseContent);
-
     return (
         <main className="lcs-container sm:pt-16">
             <LCSSEO title="" description=""/>
@@ -173,7 +171,7 @@ export async function getStaticProps() {
     const courseContent = ((context) => {
         const keys = context.keys();
         const values = keys.map(context);
-        const data = keys.map((key, index) => {
+        let data = keys.map((key, index) => {
             let slug = key.replace(/^.*[\\\/]/, '').slice(0, -3);
             const value: any = values[index];
             const document = matter(value.default);
@@ -183,6 +181,7 @@ export async function getStaticProps() {
                 slug
             };
         });
+        data.sort((a, b) => a.title < b.title ? -1 : 1);
         return data;
     })(require.context("../content/course-content", true, /\.md$/));
 

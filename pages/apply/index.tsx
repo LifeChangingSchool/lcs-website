@@ -370,8 +370,7 @@ export default function ApplyIndex(props: {query: {[key: string]: string}}) {
                                     </label>
                                 </div>
                                 {!isStudent &&
-                                <p className="support ~critical">Students should be the ones filling out this form!</p>}
-
+                                <p className="support ~critical content">Students should be the ones filling out this form! <a href="mailto:?subject=Apply%20to%20Life%20Changing%20School&body=Apply%20to%20Life%20Changing%20School%2C%20a%20virtual%20six-week%20entrepreneurship%20program%20and%20incubator%20for%20high%20schoolers%20run%20by%20Cornell%20University%20members%2C%20here%3A%20https%3A%2F%2Flifechangingschool.org%2Fapply%2Fsignup">Click here to share this form with your student.</a></p>}
                                 <hr/>
                                 <label className="label">How did you hear about LCS?</label>
                                 <div>
