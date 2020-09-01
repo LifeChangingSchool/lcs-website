@@ -2,10 +2,10 @@ import Accordion from "react-robust-accordion";
 
 const LanderFAQ = (props: {question: string, answer: string}) => (
     <Accordion label={(
-            <p>{props.question}</p>
-    )} open={false} className="p-4 border">
+            <h3 className="font-bold">{props.question}</h3>
+    )} className="p-4 border" open={false}>
         <div>
-            <p className="opacity-25 mt-4">{props.answer}</p>
+            <p className="opacity-75 mt-4">{props.answer}</p>
         </div>
     </Accordion>
 )

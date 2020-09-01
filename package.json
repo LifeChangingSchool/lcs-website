@@ -31,7 +31,7 @@
     "react-icons": "^3.11.0",
     "react-loading-skeleton": "^2.1.1",
     "react-markdown": "^4.3.1",
-    "react-robust-accordion": "^0.3.0",
+    "react-robust-accordion": "^0.3.1",
     "stripe": "^8.89.0",
     "typescript": "^3.9.7",
     "validator": "^13.1.1"
