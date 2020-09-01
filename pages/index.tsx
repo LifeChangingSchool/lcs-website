@@ -1,17 +1,16 @@
 import Link from "next/link";
 import LanderCTA from "../components/lander-cta";
-import {FaArrowLeft, FaArrowRight, FaBook, FaChalkboardTeacher, FaRocket, FaToolbox, FaUserCheck} from "react-icons/fa";
-import LanderTestimonial from "../components/lander-testimonial";
+import {FaBook, FaChalkboardTeacher, FaRocket, FaToolbox, FaUserCheck} from "react-icons/fa";
 import LanderFAQ from "../components/lander-faq";
-import Testimonials from "../content/testimonials.json";
 import FAQ from "../content/faq.json";
 import LanderRedContainer from "../components/lander-red-container";
 import LCSSEO from "../lib/seolib";
 import matter from "gray-matter";
 import Accordion from "react-robust-accordion";
 import ReactMarkdown from "react-markdown";
+import LanderTestimonials from "../components/lander-testimonials";
 
-export default function Home({ courseContent }) {
+export default function Home({courseContent}) {
     return (
         <main className="lcs-container sm:pt-16">
             <LCSSEO title="" description=""/>
@@ -43,9 +42,11 @@ export default function Home({ courseContent }) {
             <LanderCTA/>
             <div className="md:flex items-end">
                 <div className="md:mr-8">
-                    <h2 className="heading text-2xl lg:text-3xl max-w-md my-8">Training high schoolers to become the next generation of
+                    <h2 className="heading text-2xl lg:text-3xl max-w-md my-8">Training high schoolers to become the
+                        next generation of
                         entrepreneurs</h2>
-                    <p>We select up to 50 of the top high school students around the world and provide them with the education and platform to launch sustainable, impactful startups in just six weeks.</p>
+                    <p>We select up to 50 of the top high school students around the world and provide them with the
+                        education and platform to launch sustainable, impactful startups in just six weeks.</p>
                 </div>
                 <div className="md:max-w-sm mt-8">
                     <img src="/img/lander2.jpg" alt="Photo from LCS final presentation"/>
@@ -54,7 +55,8 @@ export default function Home({ courseContent }) {
             <div className="my-12">
                 <div className="-mx-2 flex justify-around">
                     {Array.apply(0, Array(6)).map((_, i) => (
-                        <div className={`mx-1 rounded-full w-full ${i >= 2 ? "lcs-bg-yellow" : "lcs-bg-red"} h-2`} key={i}/>
+                        <div className={`mx-1 rounded-full w-full ${i >= 2 ? "lcs-bg-yellow" : "lcs-bg-red"} h-2`}
+                             key={i}/>
                     ))}
                 </div>
                 <div className="sm:flex mt-2">
@@ -74,21 +76,24 @@ export default function Home({ courseContent }) {
                         <FaBook/>
                     </div>
                     <h3 className="font-accent font-bold text-lg my-2 leading-5">Rigorous curriculum</h3>
-                    <p className="text-xs">Learn everything you need to know about the eship process, from customer discovery to getting funding.</p>
+                    <p className="text-xs">Learn everything you need to know about the eship process, from customer
+                        discovery to getting funding.</p>
                 </div>
                 <div className="lcs-grid-item">
                     <div className="shield lcs-bg-red">
                         <FaRocket/>
                     </div>
                     <h3 className="font-accent font-bold text-lg my-2 leading-5">Launch a real company</h3>
-                    <p className="text-xs">Create a business plan, build an MVP, and launch a real startup using the Lean startup methodology.</p>
+                    <p className="text-xs">Create a business plan, build an MVP, and launch a real startup using the
+                        Lean startup methodology.</p>
                 </div>
                 <div className="lcs-grid-item">
                     <div className="shield lcs-bg-green">
                         <img src="/img/startuptree.png" alt="StartupTree Logo" className="w-4"/>
                     </div>
                     <h3 className="font-accent font-bold text-lg my-2 leading-5">Premier network</h3>
-                    <p className="text-xs">Network with top entrepreneurs and students at weekly workshops and on StartupTree.</p>
+                    <p className="text-xs">Network with top entrepreneurs and students at weekly workshops and on
+                        StartupTree.</p>
                 </div>
                 <div className="lcs-grid-item">
                     <div className="shield lcs-bg-red">
@@ -102,7 +107,8 @@ export default function Home({ courseContent }) {
                         <FaUserCheck/>
                     </div>
                     <h3 className="font-accent font-bold text-lg my-2 leading-5">1-on-1 mentorship</h3>
-                    <p className="text-xs">You'll be directly supported by a personal mentor as you learn and build your business.</p>
+                    <p className="text-xs">You'll be directly supported by a personal mentor as you learn and build your
+                        business.</p>
                 </div>
                 <div className="lcs-grid-item">
                     <div className="shield lcs-bg-red">
@@ -113,27 +119,18 @@ export default function Home({ courseContent }) {
                 </div>
             </div>
             <hr className="my-16"/>
-            <h2 className="heading">Hear from alumni and parents</h2>
-            <div className="md:grid md:grid-cols-2 md:gap-x-6">
-                {Testimonials.testimonials.map((t, i) => (
-                    <div key={i}>
-                        <LanderTestimonial name={t.name} title={t.title} imgPath={t.headshot} text={(
-                            <>
-                                <p>{t.message}</p>
-                                <p className="italic">{t.note}</p>
-                            </>
-                        )} borderRight={i % 2 === 0 && i < Testimonials.testimonials.length - 1}/>
-                    </div>
-                ))}
-            </div>
+            <LanderTestimonials/>
             <LanderRedContainer>
                 <div className="lcs-container text-center">
                     <h2 className="lcs-uppercase-bold mb-4">Program Cost</h2>
                     <p className="text-6xl font-bold leading-none">
                         <s className="opacity-25">$1500</s> <span className="lcs-text-yellow">$900</span>
                     </p>
-                    <p className="max-w-lg mx-auto my-4"><b>Save 40%</b> by enrolling in our October 2020 session compared to the cost of previous in-person sessions. Get the same top-quality instruction, mentorship, and networking.</p>
-                    <Link href="/apply"><a className="lcs-cta-button lcs-bg-yellow my-4 text-xl">Apply now and save 40%</a></Link>
+                    <p className="max-w-lg mx-auto my-4"><b>Save 40%</b> by enrolling in our October 2020 session
+                        compared to the cost of previous in-person sessions. Get the same top-quality instruction,
+                        mentorship, and networking.</p>
+                    <Link href="/apply"><a className="lcs-cta-button lcs-bg-yellow my-4 text-xl">Apply now and save
+                        40%</a></Link>
                 </div>
             </LanderRedContainer>
             <div className="md:grid md:grid-cols-2">
@@ -185,5 +182,5 @@ export async function getStaticProps() {
         return data;
     })(require.context("../content/course-content", true, /\.md$/));
 
-    return {props: { courseContent }};
+    return {props: {courseContent}};
 }
