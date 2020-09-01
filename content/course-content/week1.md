@@ -1,8 +1,10 @@
 ---
 title: Week 1
 ---
-
 The updated online curriculum includes:
-- foundational thinking in entrepreneurship
-- basics of web development (no prior experience required)
-- tenets of best design practice.
+
+* Foundational thinking in lean entrepreneurship
+* Basics of social entrepreneurship
+* Tenets of best design practice
+* The Lean Model Canvas
+* How to conduct customer interviews
