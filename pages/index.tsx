@@ -1,4 +1,3 @@
-import Head from 'next/head'
 import Link from "next/link";
 import LanderCTA from "../components/lander-cta";
 import {FaArrowLeft, FaArrowRight, FaBook, FaChalkboardTeacher, FaRocket, FaToolbox, FaUserCheck} from "react-icons/fa";
@@ -7,15 +6,13 @@ import LanderFAQ from "../components/lander-faq";
 import Testimonials from "../content/testimonials.json";
 import FAQ from "../content/faq.json";
 import LanderRedContainer from "../components/lander-red-container";
+import LCSSEO from "../lib/seolib";
 
 export default function Home() {
 
     return (
-        <div className="lcs-container sm:pt-16">
-            <Head>
-                <title>Life Changing School</title>
-                <link rel="icon" href="/favicon.ico"/>
-            </Head>
+        <main className="lcs-container sm:pt-16">
+            <LCSSEO title="" description=""/>
             <h1 className="my-8 heading md:text-5xl" style={{
                 lineHeight: 1.0,
             }}>
@@ -154,6 +151,6 @@ export default function Home() {
             </div>
             <LanderCTA/>
             <hr className="-mt-20"/>
-        </div>
+        </main>
     )
 }

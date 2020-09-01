@@ -1,10 +1,12 @@
 import matter from "gray-matter";
 import Link from "next/link";
 import {format} from "date-fns";
+import LCSSEO from "../../lib/seolib";
 
 export default function BlogIndex({posts}) {
     return (
         <div className="lcs-container">
+            <LCSSEO title="Blog" description="News and resources from Life Changing School, a virtual high school entrepreneurship program and incubator, run by Cornell University members."/>
             <h1 className="heading">Blog</h1>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {posts && posts.map((post) => (

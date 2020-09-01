@@ -3,8 +3,7 @@ import { useAuth } from "../../lib/authlib";
 import { useRouter } from "next/router";
 import {useEffect, useState} from "react";
 import Link from "next/link";
-import Head from "next/head";
-import getTitle from "../../lib/titlelib";
+import LCSSEO from "../../lib/seolib";
 
 export default function ApplySignup(){
     const auth = useAuth();
@@ -54,9 +53,7 @@ export default function ApplySignup(){
 
     return (
         <div className="max-w-sm mx-auto">
-            <Head>
-                <title>{getTitle("Sign up")}</title>
-            </Head>
+            <LCSSEO title="Application Portal Signup" description="Sign up to our portal to fill out and submit your application to Life Changing School, an entrepreneurship program and incubator for high schoolers."/>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <h1 className="heading">Start your application today</h1>
                 <p className="support">Create an account in our portal to submit your application</p>

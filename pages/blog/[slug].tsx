@@ -2,10 +2,12 @@ import matter from 'gray-matter';
 import ReactMarkdown from 'react-markdown';
 import {format} from "date-fns";
 import Link from "next/link";
+import LCSSEO from "../../lib/seolib";
 
 export default function BlogPost({frontmatter, markdownBody}) {
     return (
         <div className="lcs-container">
+            <LCSSEO title={frontmatter.title} description={markdownBody.substr(0,155)}/>
             <Link href="/blog"><a>&lt; All posts</a></Link>
             <h1 className="heading">{frontmatter.title}</h1>
             <p>{format(new Date(frontmatter.date), "MMMM dd, yyyy")}</p>

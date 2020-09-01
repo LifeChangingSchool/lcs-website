@@ -2,8 +2,7 @@ import { useForm } from "react-hook-form";
 import { useAuth } from "../../lib/authlib";
 import { useRouter } from "next/router";
 import {useEffect, useState} from "react";
-import Head from "next/head";
-import getTitle from "../../lib/titlelib";
+import LCSSEO from "../../lib/seolib";
 
 export default function ApplySignup(){
     const auth = useAuth();
@@ -45,9 +44,8 @@ export default function ApplySignup(){
 
     return (
         <div className="max-w-sm mx-auto">
-            <Head>
-                <title>{getTitle("Verify email")}</title>
-            </Head>
+            <LCSSEO title="Verify Email" description="Verify your email to fill out and submit your application to Life Changing School, an entrepreneurship program and incubator for high schoolers."/>
+
             <form onSubmit={handleSubmit(onSubmit)}>
                 <h1 className="heading">Verify email</h1>
                 <p className="support">A verification code has been sent to your email account. Enter it below to confirm your email and continue to the application</p>
