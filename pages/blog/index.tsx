@@ -1,17 +1,23 @@
 import matter from "gray-matter";
 import Link from "next/link";
+import {format} from "date-fns";
 
 export default function BlogIndex({posts}) {
     return (
         <div className="lcs-container">
             <h1 className="heading">Blog</h1>
-            {posts && posts.map((post) => (
-                <div key={post.slug}>
-                    <Link href={`/blog/${post.slug}`}>
-                        <a>{post.frontmatter.title}</a>
-                    </Link>
-                </div>
-            ))}
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {posts && posts.map((post) => (
+                        <Link href={`/blog/${post.slug}`} key={post.slug}>
+                            <a>
+                                <div className="p-4 border">
+                                    <h3>{post.frontmatter.title}</h3>
+                                    <p>{format(new Date(post.frontmatter.date), "MMMM dd, yyyy")}</p>
+                                </div>
+                            </a>
+                        </Link>
+                ))}
+            </div>
         </div>
     )
 }

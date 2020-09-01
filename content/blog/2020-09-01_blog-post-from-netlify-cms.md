@@ -45,4 +45,4 @@ enim](http://numen.io/stabantque) pius quae. Coniuge tamen trabemque venenis!
         pSystrayReal.dmaBloatware -= link_data_standalone;
     }
 
-![A test GIF inserted here](img/uploads/navbar-scrolling.gif "A test GIF inserted here")
+![A test GIF inserted here](/img/uploads/navbar-scrolling.gif "A test GIF inserted here")

@@ -1,18 +1,23 @@
 import matter from 'gray-matter';
 import ReactMarkdown from 'react-markdown';
 import {format} from "date-fns";
+import Link from "next/link";
 
-export default function BlogPost({frontmatter, markdownBody}){
+export default function BlogPost({frontmatter, markdownBody}) {
     return (
         <div className="lcs-container">
+            <Link href="/blog"><a>&lt; All posts</a></Link>
             <h1 className="heading">{frontmatter.title}</h1>
             <p>{format(new Date(frontmatter.date), "MMMM dd, yyyy")}</p>
-            <ReactMarkdown source={markdownBody}/>
+            <hr/>
+            <div className="content">
+                <ReactMarkdown source={markdownBody}/>
+            </div>
         </div>
     )
 }
 
-export async function getStaticProps({ ...ctx }) {
+export async function getStaticProps({...ctx}) {
     const {slug} = ctx.params;
     const content = await import(`../../content/blog/${slug}.md`);
     const data = matter(content.default);
