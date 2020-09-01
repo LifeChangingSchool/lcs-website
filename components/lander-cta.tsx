@@ -1,9 +1,9 @@
 import Link from "next/link";
 import LanderRedContainer from "./lander-red-container";
 
-export default function LanderCTA(){
+export default function LanderCTA(props: {className?: string}){
     return (
-        <LanderRedContainer>
+        <LanderRedContainer className={props.className}>
             <div className="lcs-container lcs-lander-grid">
                 <div className="lcs-uppercase-bold col-span-2 mb-4 sm:col-span-1 sm:mb-0">
                     <span>October 2020 Session</span>

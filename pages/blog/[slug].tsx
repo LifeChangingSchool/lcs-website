@@ -3,19 +3,25 @@ import ReactMarkdown from 'react-markdown';
 import {format} from "date-fns";
 import Link from "next/link";
 import LCSSEO from "../../lib/seolib";
+import LanderRedContainer from "../../components/lander-red-container";
+import LanderCTA from "../../components/lander-cta";
 
 export default function BlogPost({frontmatter, markdownBody}) {
     return (
-        <div className="lcs-container">
+        <main className="lcs-container">
             <LCSSEO title={frontmatter.title} description={markdownBody.substr(0,155)}/>
-            <Link href="/blog"><a>&lt; All posts</a></Link>
-            <h1 className="heading">{frontmatter.title}</h1>
-            <p>{format(new Date(frontmatter.date), "MMMM dd, yyyy")}</p>
-            <hr/>
-            <div className="content">
+            <LanderRedContainer className="mt-0 mb-12">
+                <div className="lcs-container">
+                    <Link href="/blog"><a>&lt; All posts</a></Link>
+                    <h1 className="heading text-white mt-8">{frontmatter.title}</h1>
+                    <p>{format(new Date(frontmatter.date), "MMMM dd, yyyy")}</p>
+                </div>
+            </LanderRedContainer>
+            <div className="content max-w-xl mx-auto">
                 <ReactMarkdown source={markdownBody}/>
             </div>
-        </div>
+            <LanderCTA className="mt-12"/>
+        </main>
     )
 }
 

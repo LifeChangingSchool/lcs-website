@@ -39,7 +39,7 @@ export default function Home({courseContent}) {
                     <img src="/img/support3-startuptree.png" alt="StartupTree Logo" className="h-full"/>
                 </div>
             </div>
-            <LanderCTA/>
+            <LanderCTA className="my-12"/>
             <div className="md:flex items-end">
                 <div className="md:mr-8">
                     <h2 className="heading text-2xl lg:text-3xl max-w-md my-8">Training high schoolers to become the
@@ -120,7 +120,7 @@ export default function Home({courseContent}) {
             </div>
             <hr className="my-16"/>
             <LanderTestimonials/>
-            <LanderRedContainer>
+            <LanderRedContainer className="my-12">
                 <div className="lcs-container text-center">
                     <h2 className="lcs-uppercase-bold mb-4">Program Cost</h2>
                     <p className="text-6xl font-bold leading-none">
@@ -158,8 +158,7 @@ export default function Home({courseContent}) {
                     )}
                 </div>
             </div>
-            <LanderCTA/>
-            <hr className="-mt-20"/>
+            <LanderCTA className="mt-12"/>
         </main>
     )
 }

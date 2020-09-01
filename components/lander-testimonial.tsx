@@ -6,9 +6,11 @@ export default function LanderTestimonial(props: { name: string, title: string, 
             width: 400,
         }}>
             <div className="flex items-center">
-                <div className="w-16 mr-4">
-                    <img className="rounded-full" src={props.imgPath} alt={`Headshot of ${props.name}, ${props.title}`}/>
-                </div>
+                {props.imgPath && (
+                    <div className="w-16 mr-4">
+                        <img className="rounded-full" src={props.imgPath} alt={`Headshot of ${props.name}, ${props.title}`}/>
+                    </div>
+                )}
                 <div>
                     <div className="font-accent font-bold"><span>{props.name}</span></div>
                     <div><span>{props.title}</span></div>

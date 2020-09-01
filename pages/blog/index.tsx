@@ -5,22 +5,36 @@ import LCSSEO from "../../lib/seolib";
 
 export default function BlogIndex({posts}) {
     return (
-        <div className="lcs-container">
-            <LCSSEO title="Blog" description="News and resources from Life Changing School, a virtual high school entrepreneurship program and incubator, run by Cornell University members."/>
-            <h1 className="heading">Blog</h1>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {posts && posts.map((post) => (
-                        <Link href={`/blog/${post.slug}`} key={post.slug}>
-                            <a>
-                                <div className="p-4 border">
-                                    <h3>{post.frontmatter.title}</h3>
-                                    <p>{format(new Date(post.frontmatter.date), "MMMM dd, yyyy")}</p>
-                                </div>
-                            </a>
-                        </Link>
-                ))}
+        <>
+            <div className="md:flex relative lcs-container">
+                <LCSSEO title="Blog"
+                        description="News and resources from Life Changing School, a virtual high school entrepreneurship program and incubator, run by Cornell University members."/>
+                <div className="lcs-bg-red md:absolute flex flex-shrink-0 h-full lcs-blog-sidebar">
+                    <div className="ml-auto md:w-64 py-8 md:pr-8">
+                        <h1 className="lcs-uppercase-bold">Blog</h1>
+                        <p className="max-w-xl">The latest from the LCS team about the program, entrepreneurship,
+                            college
+                            admissions, and more.</p>
+                    </div>
+                </div>
+                <div className="w-64 flex-shrink-0"/>
+                <div className="md:pl-8">
+                    {posts && posts.map((post) => (
+                        <div key={post.slug}
+                             className="my-8 p-6 shadow-md hover:shadow-lg transition transition-shadow">
+                            <Link href={`/blog/${post.slug}`}>
+                                <a>
+                                    <div>
+                                        <h3 className="heading leading-none mb-4 text-2xl">{post.frontmatter.title}</h3>
+                                        <p>{format(new Date(post.frontmatter.date), "MMMM dd, yyyy")}</p>
+                                    </div>
+                                </a>
+                            </Link>
+                        </div>
+                    ))}
+                </div>
             </div>
-        </div>
+        </>
     )
 }
 
@@ -46,5 +60,5 @@ export async function getStaticProps() {
         return data;
     })(require.context("../../content/blog", true, /\.md$/));
 
-    return {props: { posts }};
+    return {props: {posts}};
 }

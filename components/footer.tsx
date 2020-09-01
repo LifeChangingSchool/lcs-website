@@ -1,7 +1,7 @@
 const Footer = () => (
     <div className="w-full bg-gray-100">
         <div className="container">
-            <div className="mt-8 py-8 lcs-container">
+            <div className="py-8 lcs-container">
                 <div className="flex items-center">
                     <img className="h-8 mr-2" src="/logo.svg" alt="LCS Logo"/>
                     <p>Life Changing School</p>
