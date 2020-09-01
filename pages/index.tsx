@@ -117,12 +117,14 @@ export default function Home() {
             <h2 className="heading">Hear from alumni and parents</h2>
             <div className="md:grid md:grid-cols-2 md:gap-x-6">
                 {Testimonials.testimonials.map((t, i) => (
-                    <LanderTestimonial name={t.name} title={t.title} imgPath={t.headshot} text={(
-                        <>
-                            <p>{t.message}</p>
-                            <p className="italic">{t.note}</p>
-                        </>
-                    )} borderRight={i % 2 === 0 && i < Testimonials.testimonials.length - 1}/>
+                    <div key={i}>
+                        <LanderTestimonial name={t.name} title={t.title} imgPath={t.headshot} text={(
+                            <>
+                                <p>{t.message}</p>
+                                <p className="italic">{t.note}</p>
+                            </>
+                        )} borderRight={i % 2 === 0 && i < Testimonials.testimonials.length - 1}/>
+                    </div>
                 ))}
             </div>
             <LanderRedContainer>
@@ -143,8 +145,10 @@ export default function Home() {
                 <hr className="md:hidden"/>
                 <div className="md:pb-0 md:border-b-0 md:pl-6">
                     <h2 className="heading mb-4">FAQs</h2>
-                    {FAQ.faq.map(f =>
-                        <LanderFAQ question={f.question} answer={f.answer}/>
+                    {FAQ.faq.map((f, i) =>
+                        <div key={i}>
+                            <LanderFAQ question={f.question} answer={f.answer}/>
+                        </div>
                     )}
                 </div>
             </div>
