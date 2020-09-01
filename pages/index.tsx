@@ -6,6 +6,7 @@ import LanderTestimonial from "../components/lander-testimonial";
 import LanderFAQ from "../components/lander-faq";
 import Testimonials from "../content/testimonials.json";
 import FAQ from "../content/faq.json";
+import LanderRedContainer from "../components/lander-red-container";
 
 export default function Home() {
 
@@ -115,20 +116,26 @@ export default function Home() {
             <hr className="my-16"/>
             <h2 className="heading">Hear from alumni and parents</h2>
             <div className="md:grid md:grid-cols-2 md:gap-x-6">
-                {Testimonials.testimonials.map(t => (
+                {Testimonials.testimonials.map((t, i) => (
                     <LanderTestimonial name={t.name} title={t.title} imgPath={t.headshot} text={(
                         <>
                             <p>{t.message}</p>
                             <p className="italic">{t.note}</p>
                         </>
-                    )}/>
+                    )} borderRight={i % 2 === 0 && i < Testimonials.testimonials.length - 1}/>
                 ))}
             </div>
-            <div className="flex">
-                <button className="hover:bg-gray-300 p-4 border ml-auto"><FaArrowLeft/></button>
-                <button className="hover:bg-gray-300 p-4 border"><FaArrowRight/></button>
-            </div>
-            <LanderCTA/>
+            <LanderRedContainer>
+                <div className="lcs-container text-center">
+                    <h2 className="lcs-uppercase-bold mb-4">Program Cost</h2>
+                    <p className="text-6xl font-bold leading-none">
+                        <s className="opacity-25">$1500</s> <span className="lcs-text-yellow">$900</span>
+                    </p>
+                    <p className="max-w-lg mx-auto my-4"><b>Save 40%</b> by enrolling in our October 2020 session compared to the cost of previous in-person sessions. Get the same top-quality instruction, mentorship, and networking.</p>
+                    <Link href="/apply"><a className="lcs-cta-button lcs-bg-yellow my-4 text-xl">Apply now and save 40%</a></Link>
+                </div>
+            </LanderRedContainer>
+            <hr/>
             <div className="md:grid md:grid-cols-2">
                 <div className="md:pb-0 md:border-b-0 md:pr-6 md:border-r">
                     <h2 className="heading mb-4">What's in the course</h2>
@@ -141,6 +148,8 @@ export default function Home() {
                     )}
                 </div>
             </div>
+            <LanderCTA/>
+            <hr className="-mt-20"/>
         </div>
     )
 }
