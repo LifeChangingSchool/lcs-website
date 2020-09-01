@@ -47,3 +47,10 @@ collections:
       - {label: "Date", name: "date", widget: "datetime"}
       - {label: "Body", name: "body", widget: "markdown"}
       - {label: "Featured Image", name: "thumbnail", widget: "image"}
+  - name: course-content
+    label: Landing Page Course Content Overview
+    folder: "content/course-content"
+    create: true
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Body", name: "body", widget: "markdown"}

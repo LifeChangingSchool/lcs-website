@@ -7,8 +7,12 @@ import Testimonials from "../content/testimonials.json";
 import FAQ from "../content/faq.json";
 import LanderRedContainer from "../components/lander-red-container";
 import LCSSEO from "../lib/seolib";
+import matter from "gray-matter";
+import Accordion from "react-robust-accordion";
+import ReactMarkdown from "react-markdown";
 
-export default function Home() {
+export default function Home({ courseContent }) {
+    console.log(courseContent);
 
     return (
         <main className="lcs-container sm:pt-16">
@@ -134,10 +138,20 @@ export default function Home() {
                     <Link href="/apply"><a className="lcs-cta-button lcs-bg-yellow my-4 text-xl">Apply now and save 40%</a></Link>
                 </div>
             </LanderRedContainer>
-            <hr/>
             <div className="md:grid md:grid-cols-2">
                 <div className="md:pb-0 md:border-b-0 md:pr-6 md:border-r">
                     <h2 className="heading mb-4">What's in the course</h2>
+                    {courseContent.map((item, i) =>
+                        <div key={i}>
+                            <Accordion label={(
+                                <h3 className="font-bold">{item.title}</h3>
+                            )} className="p-4 border" open={true}>
+                                <div className="content mt-4">
+                                    <ReactMarkdown source={item.markdownBody}/>
+                                </div>
+                            </Accordion>
+                        </div>
+                    )}
                 </div>
                 <hr className="md:hidden"/>
                 <div className="md:pb-0 md:border-b-0 md:pl-6">
@@ -153,4 +167,24 @@ export default function Home() {
             <hr className="-mt-20"/>
         </main>
     )
+}
+
+export async function getStaticProps() {
+    const courseContent = ((context) => {
+        const keys = context.keys();
+        const values = keys.map(context);
+        const data = keys.map((key, index) => {
+            let slug = key.replace(/^.*[\\\/]/, '').slice(0, -3);
+            const value: any = values[index];
+            const document = matter(value.default);
+            return {
+                title: document.data.title,
+                markdownBody: document.content,
+                slug
+            };
+        });
+        return data;
+    })(require.context("../content/course-content", true, /\.md$/));
+
+    return {props: { courseContent }};
 }
