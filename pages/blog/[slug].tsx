@@ -21,7 +21,7 @@ export default function BlogPost({frontmatter, markdownBody}) {
             <div className="content max-w-xl mx-auto">
                 <ReactMarkdown source={markdownBody}/>
             </div>
-            <GeneralCTA className="mt-12"/>
+            <GeneralCTA className="mt-12" blog={true}/>
             <LanderCTA/>
         </main>
     )

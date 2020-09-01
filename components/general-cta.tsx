@@ -1,14 +1,18 @@
 import Link from "next/link";
 
-const GeneralCTA = (props: {className?: string}) => (
+const GeneralCTA = (props: {className?: string, blog?: boolean}) => (
     <div className={`py-6 relative bg-gray-100 ${props.className}`} style={{
         width: "100vw",
         left: "calc(50% - 50vw)"
     }}>
         <div className="container">
             <div className="lcs-container">
-                <p>Enjoy our blog posts? Consider applying to LCS's online entrepreneurship program for high schoolers.</p>
-                <hr/>
+                {props.blog && (
+                    <>
+                        <p>Enjoy our blog posts? Consider applying to LCS's online entrepreneurship program for high schoolers.</p>
+                        <hr/>
+                    </>
+                )}
                 <h3 className="my-8 heading md:text-3xl" style={{
                     lineHeight: 1.0,
                 }}>

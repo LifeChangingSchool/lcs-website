@@ -36,7 +36,7 @@ export default function BlogIndex({posts}) {
                     ))}
                 </div>
             </div>
-            <GeneralCTA/>
+            <GeneralCTA blog={true}/>
         </>
     )
 }
