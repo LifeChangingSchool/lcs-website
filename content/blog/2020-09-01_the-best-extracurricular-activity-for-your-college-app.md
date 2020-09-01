@@ -1,5 +1,5 @@
 ---
-title: "The Best Extracurricular Activity for your College App "
+title: "The Best Extracurricular Activity For Your College App "
 tags: COLLEGE ADMISSIONS, EXTRACURRICULARS
 date: 2020-09-01T17:22:00.000Z
 thumbnail: /img/uploads/ygreatsite-1-.png
