@@ -144,7 +144,7 @@ export default function Home() {
                 </div>
                 <hr className="md:hidden"/>
                 <div className="md:pb-0 md:border-b-0 md:pl-6">
-                    <h2 className="heading mb-4">FAQs</h2>
+                    <h2 className="heading mb-4" id="lander-section-faq">FAQs</h2>
                     {FAQ.faq.map((f, i) =>
                         <div key={i}>
                             <LanderFAQ question={f.question} answer={f.answer}/>

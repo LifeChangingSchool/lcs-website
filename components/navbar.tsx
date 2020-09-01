@@ -20,7 +20,7 @@ export default function Navbar() {
                         </a></Link>
                         <div className={`absolute lg:relative right-0 self-start lg:self-auto mt-16 flex-col flex lg:mt-0 lg:flex-row lg:ml-auto bg-gray-100 lg:bg-transparent p-4 lg:p-0 ${menuOpen ? "" : "hidden lg:flex"}`}>
                             <Link href="/"><a className="lg:ml-4 my-1">Home</a></Link>
-                            <Link href="/"><a className="lg:ml-4 my-1">FAQs</a></Link>
+                            <Link href="/#lander-section-faq"><a className="lg:ml-4 my-1">FAQs</a></Link>
                             <Link href="/"><a className="lg:ml-4 my-1">About</a></Link>
                             <Link href="/blog"><a className="lg:ml-4 my-1">Blog</a></Link>
                         </div>
