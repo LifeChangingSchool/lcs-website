@@ -36,6 +36,24 @@ collections:
             fields:
               - { label: Question, name: question, widget: string }
               - { label: Answer, name: answer, widget: string }
+  - name: team
+    label: Team Members
+    files:
+      - label: "Team Members"
+        name: "team_file"
+        file: "content/team.json"
+        fields:
+          - label: "Team Member"
+            name: "team"
+            widget: "list"
+            fields:
+              - { label: Name, name: name, widget: string }
+              - { label: Title, name: title, widget: string }
+              - { label: Bio, name: bio, widget: string }
+              - label: Headshot
+                name: headshot
+                widget: image
+                allow_multiple: false
   - name: blog
     label: Blog Posts
     folder: "content/blog"
