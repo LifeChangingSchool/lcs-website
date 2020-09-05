@@ -2,8 +2,6 @@ import matter from "gray-matter";
 import Link from "next/link";
 import {format} from "date-fns";
 import LCSSEO from "../../lib/seolib";
-import GeneralCTA from "../../components/general-cta";
-import LanderCTA from "../../components/lander-cta";
 
 export default function BlogIndex({posts}) {
     return (
@@ -36,7 +34,6 @@ export default function BlogIndex({posts}) {
                     ))}
                 </div>
             </div>
-            <GeneralCTA blog={true}/>
         </>
     )
 }

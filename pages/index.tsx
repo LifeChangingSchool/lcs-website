@@ -9,6 +9,8 @@ import matter from "gray-matter";
 import Accordion from "react-robust-accordion";
 import ReactMarkdown from "react-markdown";
 import LanderTestimonials from "../components/lander-testimonials";
+import Team from "../content/team.json";
+import GeneralCTA from "../components/general-cta";
 
 export default function Home({courseContent}) {
     return (
@@ -133,6 +135,37 @@ export default function Home({courseContent}) {
                         40%</a></Link>
                 </div>
             </LanderRedContainer>
+
+            <h2 className="heading mb-4">Our Team</h2>
+
+            <p className="mb-8">LCS is run by an incredible team of Cornell University members who have 12+ years of experience with launching ventures and guiding entrepreneurs.</p>
+
+            <div className="sm:flex sm:flex-wrap">
+                {
+                    Team.team.map((item, i) => (
+                        <div className="sm:w-1/2 lg:w-1/4 text-center px-4">
+                            <div>
+                                <img className="rounded-full w-32 inline" src={item.headshot}
+                                     alt={`Headshot of LCS ${item.title} ${item.name}`}/>
+                                <h3 className="label mt-4">{item.name}</h3>
+                                <p className="support my-1">{item.title}</p>
+                                <p className="support text-gray-500 my-1">{item.shortbio}</p>
+                            </div>
+                            {
+                                i === Team.team.length - 1 ? "" :
+                                    i === Team.team.length - 2 ? <hr className="sm:hidden"/> : <hr className="lg:hidden"/>
+                            }
+                        </div>
+                    ))
+                }
+            </div>
+
+            <div className="mt-12 text-center">
+                <Link href="/about"><a className="p-4 border hover:bg-gray-300">More about our team &gt;</a></Link>
+            </div>
+
+            <hr className="my-12"/>
+
             <div className="md:grid md:grid-cols-2">
                 <div className="md:pb-0 md:border-b-0 md:pr-6 md:border-r">
                     <h2 className="heading mb-4">What's in the course</h2>
@@ -158,7 +191,7 @@ export default function Home({courseContent}) {
                     )}
                 </div>
             </div>
-            <LanderCTA className="mt-12"/>
+            <hr className="sep"/>
         </main>
     )
 }

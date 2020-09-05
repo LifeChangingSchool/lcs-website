@@ -50,6 +50,7 @@ collections:
               - { label: Name, name: name, widget: string }
               - { label: Title, name: title, widget: string }
               - { label: Bio, name: bio, widget: string }
+              - { label: Short Bio, name: shortbio, widget: string, required: false }
               - label: Headshot
                 name: headshot
                 widget: image
