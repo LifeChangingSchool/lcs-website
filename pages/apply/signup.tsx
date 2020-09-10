@@ -1,14 +1,14 @@
-import { useForm } from "react-hook-form";
-import { useAuth } from "../../lib/authlib";
-import { useRouter } from "next/router";
+import {useForm} from "react-hook-form";
+import {useAuth} from "../../lib/authlib";
+import {useRouter} from "next/router";
 import {useEffect, useState} from "react";
 import Link from "next/link";
 import LCSSEO from "../../lib/seolib";
 
-export default function ApplySignup(){
+export default function ApplySignup() {
     const auth = useAuth();
     const router = useRouter();
-    const { register, handleSubmit, errors } = useForm();
+    const {register, handleSubmit, errors} = useForm();
     const [matchError, setMatchError] = useState<boolean>(false);
     const [authError, setAuthError] = useState<string>(null);
     const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -52,38 +52,63 @@ export default function ApplySignup(){
     }, []);
 
     return (
-        <div className="max-w-sm mx-auto">
-            <LCSSEO title="Application Portal Signup" description="Sign up to our portal to fill out and submit your application to Life Changing School, an entrepreneurship program and incubator for high schoolers."/>
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <h1 className="heading">Start your application today</h1>
-                <p className="support">Create an account in our portal to submit your application</p>
-                <hr/>
+        <div className="lcs-container">
+            <div className="lg:flex justify-between lg:-mx-8">
+                <div className="max-w-sm p-8 lg:ml-8 shadow-xl mx-auto">
+                    <LCSSEO title="Application Portal Signup"
+                            description="Sign up to our portal to fill out and submit your application to Life Changing School, an entrepreneurship program and incubator for high schoolers."/>
+                    <form onSubmit={handleSubmit(onSubmit)}>
+                        <h1 className="heading">Start your application today</h1>
+                        <p className="support">Create an account in our portal to submit your application</p>
+                        <hr/>
 
-                {isLoading && <p className="aside ~info">Loading...</p>}
+                        {isLoading && <p className="aside ~info">Loading...</p>}
 
-                {authError && <p className="aside ~critical">{authError}</p>}
+                        {authError && <p className="aside ~critical">{authError}</p>}
 
-                <label className="label">Email</label>
-                <input type="email" name="email" className="field" ref={register({required: true})}/>
-                {errors.email && <p className="~critical support">Enter a valid email</p>}
+                        <label className="label">Email</label>
+                        <input type="email" name="email" className="field" ref={register({required: true})}/>
+                        {errors.email && <p className="~critical support">Enter a valid email</p>}
 
-                <label className="label">Password</label>
-                <input type="password" name="password" className="field" ref={register({required: true})}/>
-                {errors.password && <p className="~critical support">Enter a valid password</p>}
+                        <label className="label">Password</label>
+                        <input type="password" name="password" className="field" ref={register({required: true})}/>
+                        {errors.password && <p className="~critical support">Enter a valid password</p>}
 
-                <label className="label">Confirm password</label>
-                <input type="password" name="confirmPassword" className="field" ref={register({required: true})}/>
-                {matchError && <p className="~critical support">Passwords don't match</p>}
+                        <label className="label">Confirm password</label>
+                        <input type="password" name="confirmPassword" className="field"
+                               ref={register({required: true})}/>
+                        {matchError && <p className="~critical support">Passwords don't match</p>}
 
-                <button className="button button-big ~urge !high mt-4">Get started</button>
+                        <button className="button button-big ~urge !high mt-4">Get started</button>
 
-                <hr/>
+                        <hr/>
 
-                <div className="flex items-center">
-                    <p>Already have an account?</p>
-                    <Link href={`/apply/login?returnStage=${router.query.returnStage}`}><a className="button ml-auto">Log in</a></Link>
+                        <div className="flex items-center">
+                            <p>Already have an account?</p>
+                            <Link href={`/apply/login?returnStage=${router.query.returnStage}`}><a
+                                className="button ml-auto">Log in</a></Link>
+                        </div>
+                    </form>
                 </div>
-            </form>
+                <div className="flex-grow lg:px-8 lg:pt-8 content">
+                    <hr className="sep lg:hidden"/>
+                    <h2 className="heading">What's in the application?</h2>
+                    <p>We ask for some basic info, as well as four short response questions:</p>
+                    <ol>
+                        <li>Tell about a successful startup that you find cool. What do you think makes them
+                            successful?
+                        </li>
+                        <li>What is your biggest weakness and what have you done to overcome it?</li>
+                        <li>What makes you a good fit for LCS and why do you want to take part in this program?</li>
+                        <li>Do you have any prior experience with entrepreneurship? Tell us if you've built anything in
+                            the past! (optional)
+                        </li>
+                    </ol>
+                    <p>You don't need to write a super-polished essay for each one. Just give us what you've got! A few
+                        sentences that will help us get to know you better is all we're looking for.</p>
+                    <hr className="sep lg:hidden"/>
+                </div>
+            </div>
         </div>
     )
 }

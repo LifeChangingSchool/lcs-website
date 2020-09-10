@@ -7,9 +7,13 @@ export default function Footer(){
 
     return (
         <>
-            <GeneralCTA blog={router.route.substr(0,5) === "/blog"}/>
-            <LanderCTA/>
-            <div className="w-full bg-gray-700 text-white">
+            {router.route.substr(0, 6) !== "/apply" && (
+                <>
+                    <GeneralCTA blog={router.route.substr(0,5) === "/blog"}/>
+                    <LanderCTA/>
+                </>
+            )}
+            <div className={`w-full bg-gray-700 text-white ${router.route.substr(0, 6) === "/apply" ? "mt-8" : ""}`}>
                 <div className="container">
                     <div className="py-8 lcs-container">
                         <div className="flex items-center">

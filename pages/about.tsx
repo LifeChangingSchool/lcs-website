@@ -1,5 +1,4 @@
 import LanderRedContainer from "../components/lander-red-container";
-import GeneralCTA from "../components/general-cta";
 import LCSTeam from "../components/team";
 
 const About = () => (
