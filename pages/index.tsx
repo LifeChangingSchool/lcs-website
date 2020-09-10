@@ -23,8 +23,8 @@ export default function Home({courseContent}) {
                 <span className="lcs-text-red">Become an entrepreneur.</span><br/>
                 <span className="lcs-text-yellow">Change your life.</span><br/>
             </h1>
-            <p className="md:text-xl max-w-2xl my-8">LCS is a virtual six-week <b>entrepreneurship program and
-                incubator</b> for high school students, no prior experience required. Run by Cornell University members
+            <p className="md:text-xl max-w-2xl my-8">LCS is a virtual <b>entrepreneurship program</b> and <b>startup
+                incubator</b> for <b>high school students</b>, no prior experience required. Run by Cornell University members
                 with years of entrepreneurship experience.</p>
             <Link href="/apply"><a className="lcs-cta-button">Apply for October 2020</a></Link>
             <img className="my-8" src="/img/lander1.jpg" alt="LCS hero image"/>
