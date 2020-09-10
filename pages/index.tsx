@@ -1,6 +1,5 @@
 import Link from "next/link";
 import LanderCTA from "../components/lander-cta";
-import {FaBook, FaChalkboardTeacher, FaRocket, FaToolbox, FaUserCheck} from "react-icons/fa";
 import LanderFAQ from "../components/lander-faq";
 import FAQ from "../content/faq.json";
 import LanderRedContainer from "../components/lander-red-container";
@@ -9,8 +8,8 @@ import matter from "gray-matter";
 import Accordion from "react-robust-accordion";
 import ReactMarkdown from "react-markdown";
 import LanderTestimonials from "../components/lander-testimonials";
-import Team from "../content/team.json";
-import GeneralCTA from "../components/general-cta";
+import LanderGrid from "../components/lander-grid";
+import LanderCost from "../components/lander-cost";
 
 export default function Home({courseContent}) {
     return (
@@ -24,7 +23,8 @@ export default function Home({courseContent}) {
                 <span className="lcs-text-yellow">Change your life.</span><br/>
             </h1>
             <p className="md:text-xl max-w-2xl my-8">LCS is a virtual <b>entrepreneurship program</b> and <b>startup
-                incubator</b> for <b>high school students</b>, no prior experience required. Run by Cornell University members
+                incubator</b> for <b>high school students</b>, no prior experience required. Run by Cornell University
+                members
                 with years of entrepreneurship experience.</p>
             <Link href="/apply"><a className="lcs-cta-button">Apply for October 2020</a></Link>
             <img className="my-8" src="/img/lander1.jpg" alt="LCS hero image"/>
@@ -72,69 +72,67 @@ export default function Home({courseContent}) {
                     </div>
                 </div>
             </div>
-            <div className="lcs-lander-grid">
-                <div className="lcs-grid-item">
-                    <div className="shield lcs-bg-red">
-                        <FaBook/>
-                    </div>
-                    <h3 className="font-accent font-bold text-lg my-2 leading-5">Rigorous curriculum</h3>
-                    <p className="text-xs">Learn everything you need to know about the eship process, from customer
-                        discovery to getting funding.</p>
+
+            <LanderGrid/>
+
+            <hr className="my-16"/>
+
+            <LanderTestimonials/>
+
+            <LanderCost/>
+
+            <div className="flex items-center flex-col-reverse md:flex-row">
+                <div className="mt-8 md:mt-0 md:mr-8" style={{flexGrow: 4, flexShrink: 1, flexBasis: 0}}>
+                    <h2 className="heading text-2xl lg:text-3xl mb-6">Launch a startup in six weeks</h2>
+                    <p className="content">We'll use no-code tools and teach you the ins-and-outs of entrepreneurship
+                        and startups, from <b>customer discovery to getting funding.</b> Create a business plan, build
+                        an MVP,
+                        and <b>launch a real startup using the Lean startup methodology</b> in only 6 weeks.</p>
+                    <a href="#lander-section-course" className="lcs-outline-button mt-6">Program overview &gt;</a>
                 </div>
-                <div className="lcs-grid-item">
-                    <div className="shield lcs-bg-red">
-                        <FaRocket/>
-                    </div>
-                    <h3 className="font-accent font-bold text-lg my-2 leading-5">Launch a real company</h3>
-                    <p className="text-xs">Create a business plan, build an MVP, and launch a real startup using the
-                        Lean startup methodology.</p>
-                </div>
-                <div className="lcs-grid-item">
-                    <div className="shield lcs-bg-green">
-                        <img src="/img/startuptree.png" alt="StartupTree Logo" className="w-4"/>
-                    </div>
-                    <h3 className="font-accent font-bold text-lg my-2 leading-5">Premier network</h3>
-                    <p className="text-xs">Network with top entrepreneurs and students at weekly workshops and on
-                        StartupTree.</p>
-                </div>
-                <div className="lcs-grid-item">
-                    <div className="shield lcs-bg-red">
-                        <FaChalkboardTeacher/>
-                    </div>
-                    <h3 className="font-accent font-bold text-lg my-2 leading-5">Live lessons and workshops</h3>
-                    <p className="text-xs">Work with peers, instructors, and guest experts in live Zoom sessions.</p>
-                </div>
-                <div className="lcs-grid-item">
-                    <div className="shield lcs-bg-red">
-                        <FaUserCheck/>
-                    </div>
-                    <h3 className="font-accent font-bold text-lg my-2 leading-5">1-on-1 mentorship</h3>
-                    <p className="text-xs">You'll be directly supported by a personal mentor as you learn and build your
-                        business.</p>
-                </div>
-                <div className="lcs-grid-item">
-                    <div className="shield lcs-bg-red">
-                        <FaToolbox/>
-                    </div>
-                    <h3 className="font-accent font-bold text-lg my-2 leading-5">No prior experience required</h3>
-                    <p className="text-xs">We'll use no-code tools and teach you everything you need to know.</p>
+                <div style={{flexGrow: 3, flexShrink: 1, flexBasis: 0}}>
+                    <img src="/img/lander3.jpg" alt="Photo from a 2015 session of Life Changing School"/>
                 </div>
             </div>
+
             <hr className="my-16"/>
-            <LanderTestimonials/>
-            <LanderRedContainer className="my-12">
-                <div className="lcs-container text-center">
-                    <h2 className="lcs-uppercase-bold mb-4">Program Cost</h2>
-                    <p className="text-6xl font-bold leading-none">
-                        <s className="opacity-25">$1500</s> <span className="lcs-text-yellow">$900</span>
-                    </p>
-                    <p className="max-w-lg mx-auto my-4"><b>Save 40%</b> by enrolling in our October 2020 session
-                        compared to the cost of previous in-person sessions. Get the same top-quality instruction,
-                        mentorship, and networking.</p>
-                    <Link href="/apply"><a className="lcs-cta-button lcs-bg-yellow my-4 text-xl">Apply now and save
-                        40%</a></Link>
+
+            <div className="md:flex items-center">
+                <div style={{flexGrow: 3, flexShrink: 1, flexBasis: 0}}>
+                    <img src="/img/startuptree-interface.png"
+                         alt="Screenshot of StartupTree, the fastest-growing network for entrepreneurship students"/>
                 </div>
-            </LanderRedContainer>
+                <div className="mt-8 md:mt-0 md:ml-8" style={{flexGrow: 4, flexShrink: 1, flexBasis: 0}}>
+                    <h2 className="heading text-2xl lg:text-3xl mb-6">Join the entrepreneurship community</h2>
+                    <p className="content">Get lifetime access to StartupTree, the <b>fastest-growing network for
+                        entrepreneurship students.</b> Access mentorship, competitions, jobs, and even funding from a
+                        network of 200,000+ entrepreneurs, with <b>alumni from Yale, Columbia, Cornell, and 100+ other
+                            institutions.</b></p>
+                    <a href="https://join.startuptree.co/" className="lcs-outline-button mt-6">More about
+                        StartupTree &gt;</a>
+                </div>
+            </div>
+
+            <hr className="my-16"/>
+
+            <div className="flex items-center flex-col-reverse md:flex-row">
+                <div className="mt-8 md:mt-0 md:mr-8" style={{flexGrow: 4, flexShrink: 1, flexBasis: 0}}>
+                    <h2 className="heading text-2xl lg:text-3xl mb-6">Gain the experience you need to succeed in college
+                        and beyond</h2>
+                    <p className="content">Put yourself ahead of the competition by building world-class leadership,
+                        communication, and design skills. Work on something you're truly passionate about, and <b>make a
+                        real impact.</b> Learn from <b>one-on-one mentorship with Cornell University members and top
+                        serial entrepreneurs.</b>
+                    </p>
+                </div>
+                <div style={{flexGrow: 3, flexShrink: 1, flexBasis: 0}}>
+                    <img src="/img/lander4.jpg" alt="Photo from a 2015 session of Life Changing School"/>
+                </div>
+            </div>
+
+            <hr className="sep"/>
+
+            <LanderCost/>
 
             <h2 className="heading mb-4">Our Team</h2>
 
@@ -164,14 +162,14 @@ export default function Home({courseContent}) {
             {/*</div>*/}
 
             <div className="mt-12 text-center">
-                <Link href="/about"><a className="p-4 border hover:bg-gray-300">More about our team &gt;</a></Link>
+                <Link href="/about"><a className="lcs-outline-button">More about our team &gt;</a></Link>
             </div>
 
             <hr className="my-12"/>
 
             <div className="md:grid md:grid-cols-2">
                 <div className="md:pb-0 md:border-b-0 md:pr-6 md:border-r">
-                    <h2 className="heading mb-4">What's in the course</h2>
+                    <h2 className="heading mb-4" id="lander-section-course">What's in the course</h2>
                     {courseContent.map((item, i) =>
                         <div key={i}>
                             <Accordion label={(
