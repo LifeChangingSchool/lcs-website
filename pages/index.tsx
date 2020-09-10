@@ -138,27 +138,30 @@ export default function Home({courseContent}) {
 
             <h2 className="heading mb-4">Our Team</h2>
 
-            <p className="mb-8">LCS is run by an incredible team of Cornell University members who have 12+ years of experience with launching ventures and guiding entrepreneurs.</p>
+            <p className="mb-8">The virtual Life Changing School Program is run by an incredible team of Cornell
+                University members who have 12+ years of experience with launching ventures and guiding entrepreneurs.
+                Our experienced Cornell members will build the same strong, life changing virtual summer program for our
+                students.</p>
 
-            <div className="sm:flex sm:flex-wrap">
-                {
-                    Team.team.map((item, i) => (
-                        <div className="sm:w-1/2 lg:w-1/4 text-center px-4">
-                            <div>
-                                <img className="rounded-full w-32 inline" src={item.headshot}
-                                     alt={`Headshot of LCS ${item.title} ${item.name}`}/>
-                                <h3 className="label mt-4">{item.name}</h3>
-                                <p className="support my-1">{item.title}</p>
-                                <p className="support text-gray-500 my-1">{item.shortbio}</p>
-                            </div>
-                            {
-                                i === Team.team.length - 1 ? "" :
-                                    i === Team.team.length - 2 ? <hr className="sm:hidden"/> : <hr className="lg:hidden"/>
-                            }
-                        </div>
-                    ))
-                }
-            </div>
+            {/*<div className="sm:flex sm:flex-wrap">*/}
+            {/*    {*/}
+            {/*        Team.team.map((item, i) => (*/}
+            {/*            <div className="sm:w-1/2 lg:w-1/4 text-center px-4">*/}
+            {/*                <div>*/}
+            {/*                    <img className="rounded-full w-32 inline" src={item.headshot}*/}
+            {/*                         alt={`Headshot of LCS ${item.title} ${item.name}`}/>*/}
+            {/*                    <h3 className="label mt-4">{item.name}</h3>*/}
+            {/*                    <p className="support my-1">{item.title}</p>*/}
+            {/*                    <p className="support text-gray-500 my-1">{item.shortbio}</p>*/}
+            {/*                </div>*/}
+            {/*                {*/}
+            {/*                    i === Team.team.length - 1 ? "" :*/}
+            {/*                        i === Team.team.length - 2 ? <hr className="sm:hidden"/> : <hr className="lg:hidden"/>*/}
+            {/*                }*/}
+            {/*            </div>*/}
+            {/*        ))*/}
+            {/*    }*/}
+            {/*</div>*/}
 
             <div className="mt-12 text-center">
                 <Link href="/about"><a className="p-4 border hover:bg-gray-300">More about our team &gt;</a></Link>
