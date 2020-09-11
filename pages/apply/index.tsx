@@ -3,7 +3,7 @@ import {useAuth} from "../../lib/authlib";
 import {useRouter} from "next/router";
 import axios from "axios";
 import validator from "validator";
-import {API, graphqlOperation} from "aws-amplify";
+import {API, container, graphqlOperation} from "aws-amplify";
 import * as queries from "../../graphql/queries";
 import * as mutations from "../../graphql/mutations";
 import {FaCaretDown, FaCaretUp, FaCheckCircle} from "react-icons/fa";
@@ -289,7 +289,12 @@ export default function ApplyIndex(props: {query: {[key: string]: string}}) {
         setOpenSection(i);
     }
 
-    return (
+    return process.env.NEXT_PUBLIC_MAINTENANCE === "ON" ? (
+        <div className="lcs-container">
+            <p className="aside">The LCS application portal is currently undergoing maintenance. You will be able to
+                access the application portal again at 1 AM EST on 9/11/20.</p>
+        </div>
+    ) : (
         <div className="flex-col sm:flex-row flex items-stretch">
             <LCSSEO title="Application Portal" description="Fill out and submit your application to Life Changing School, an entrepreneurship program and incubator for high schoolers."/>
             <Accordion label={(
@@ -299,14 +304,14 @@ export default function ApplyIndex(props: {query: {[key: string]: string}}) {
                     <p className="supra mb-4">Application steps</p>
                     <div>
                         <button className={`portal my-1 ~info ${openSection === 0 ? "active" : ""}`}
-                           onClick={() => changeSection(0)}>
+                                onClick={() => changeSection(0)}>
                             {submitted1 && <FaCheckCircle className="mr-2"/>}
                             Basic info
                         </button>
                     </div>
                     <div>
                         <button className={`portal my-1 ~info ${openSection === 1 ? "active" : ""}`}
-                           onClick={() => changeSection(1)} disabled={!submitted1}>
+                                onClick={() => changeSection(1)} disabled={!submitted1}>
                             {submitted2 && <FaCheckCircle className="mr-2"/>}
                             Written responses
                         </button>
@@ -314,7 +319,7 @@ export default function ApplyIndex(props: {query: {[key: string]: string}}) {
                     <hr/>
                     <p className="supra mb-4">Application status</p>
                     <button className={`portal my-1 ~info ${openSection === 2 ? "active" : ""}`}
-                       onClick={() => changeSection(2)} disabled={!submitted2}>Check status</button>
+                            onClick={() => changeSection(2)} disabled={!submitted2}>Check status</button>
                 </div>
             </Accordion>
             <div className="w-full sm:ml-8">
@@ -556,7 +561,7 @@ export default function ApplyIndex(props: {query: {[key: string]: string}}) {
                 <hr className="sep"/>
             </div>
         </div>
-    )
+    );
 }
 
 export async function getServerSideProps(context){

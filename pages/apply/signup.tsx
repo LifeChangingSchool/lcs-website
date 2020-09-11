@@ -53,43 +53,51 @@ export default function ApplySignup() {
 
     return (
         <div className="lcs-container">
+            {process.env.NEXT_PUBLIC_MAINTENANCE === "ON" && (
+                <p className="aside">The LCS application portal is currently undergoing maintenance. You will be able to
+                    access the application portal again at 1 AM EST on 9/11/20.</p>
+            )}
+            <LCSSEO title="Application Portal Signup"
+                    description="Sign up to our portal to fill out and submit your application to Life Changing School, an entrepreneurship program and incubator for high schoolers."/>
             <div className="lg:flex justify-between lg:-mx-8">
-                <div className="max-w-sm p-8 lg:ml-8 shadow-xl mx-auto">
-                    <LCSSEO title="Application Portal Signup"
-                            description="Sign up to our portal to fill out and submit your application to Life Changing School, an entrepreneurship program and incubator for high schoolers."/>
-                    <form onSubmit={handleSubmit(onSubmit)}>
-                        <h1 className="heading">Start your application today</h1>
-                        <p className="support">Create an account in our portal to submit your application</p>
-                        <hr/>
+                {process.env.NEXT_PUBLIC_MAINTENANCE !== "ON" && (
+                    <div className="max-w-sm p-8 lg:ml-8 shadow-xl mx-auto">
 
-                        {isLoading && <p className="aside ~info">Loading...</p>}
+                        <form onSubmit={handleSubmit(onSubmit)}>
+                            <h1 className="heading">Start your application today</h1>
+                            <p className="support">Create an account in our portal to submit your application</p>
+                            <hr/>
 
-                        {authError && <p className="aside ~critical">{authError}</p>}
+                            {isLoading && <p className="aside ~info">Loading...</p>}
 
-                        <label className="label">Email</label>
-                        <input type="email" name="email" className="field" ref={register({required: true})}/>
-                        {errors.email && <p className="~critical support">Enter a valid email</p>}
+                            {authError && <p className="aside ~critical">{authError}</p>}
 
-                        <label className="label">Password</label>
-                        <input type="password" name="password" className="field" ref={register({required: true})}/>
-                        {errors.password && <p className="~critical support">Enter a valid password</p>}
+                            <label className="label">Email</label>
+                            <input type="email" name="email" className="field" ref={register({required: true})}/>
+                            {errors.email && <p className="~critical support">Enter a valid email</p>}
 
-                        <label className="label">Confirm password</label>
-                        <input type="password" name="confirmPassword" className="field"
-                               ref={register({required: true})}/>
-                        {matchError && <p className="~critical support">Passwords don't match</p>}
+                            <label className="label">Password</label>
+                            <input type="password" name="password" className="field" ref={register({required: true})}/>
+                            {errors.password && <p className="~critical support">Enter a valid password</p>}
 
-                        <button className="button button-big ~urge !high mt-4">Get started</button>
+                            <label className="label">Confirm password</label>
+                            <input type="password" name="confirmPassword" className="field"
+                                   ref={register({required: true})}/>
+                            {matchError && <p className="~critical support">Passwords don't match</p>}
 
-                        <hr/>
+                            <button className="button button-big ~urge !high mt-4">Get started</button>
 
-                        <div className="flex items-center">
-                            <p>Already have an account?</p>
-                            <Link href={`/apply/login?returnStage=${router.query.returnStage}`}><a
-                                className="button ml-auto">Log in</a></Link>
-                        </div>
-                    </form>
-                </div>
+                            <hr/>
+
+                            <div className="flex items-center">
+                                <p>Already have an account?</p>
+                                <Link href={`/apply/login?returnStage=${router.query.returnStage}`}><a
+                                    className="button ml-auto">Log in</a></Link>
+                            </div>
+                        </form>
+
+                    </div>
+                )}
                 <div className="flex-grow lg:px-8 lg:pt-8 content">
                     <hr className="sep lg:hidden"/>
                     <h2 className="heading">What's in the application?</h2>
