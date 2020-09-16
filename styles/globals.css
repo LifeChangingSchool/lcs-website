@@ -152,3 +152,8 @@ button.button.button-big{
   @apply bg-gray-300;
 }
 
+.lcs-full-width{
+  position: relative;
+  width: 100vw;
+  left: calc(50% - 50vw);
+}

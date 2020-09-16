@@ -22,6 +22,7 @@ export default function Navbar() {
                             <Link href="/"><a className="lg:ml-4 my-1">Home</a></Link>
                             <Link href="/#lander-section-faq"><a className="lg:ml-4 my-1">FAQs</a></Link>
                             <Link href="/about"><a className="lg:ml-4 my-1">About</a></Link>
+                            <Link href="/speakers"><a className="lg:ml-4 my-1">Speakers</a></Link>
                             <Link href="/blog"><a className="lg:ml-4 my-1">Blog</a></Link>
                         </div>
                         {router.route.substr(0,6) !== "/interest" && <Link href="/interest"><a className="lcs-cta-button ml-auto lg:ml-4">Apply</a></Link>}

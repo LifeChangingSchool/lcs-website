@@ -1,0 +1,22 @@
+{
+  "speakers": [
+    {
+      "name": "Josef Scarantino",
+      "title": "Senior Program Manager at Techstars",
+      "bio": "Josef Scarantino brings nearly 20 years of experience as a founder, mentor, educator and innovator, driving social impact for entrepreneurs, startups, corporations, and nonprofits. He has developed a wealth of impactful programs and strategic partnerships, and is most interested in supporting the advancement of underrepresented populations. Josef currently works at Techstars, the worldwide network that helps entrepreneurs succeed, delivering world class startup accelerator experiences to entrepreneurs building some of the most innovative companies in the world.",
+      "headshot": "/img/uploads/josef.jpg"
+    },
+    {
+      "name": "Scot Tatelman",
+      "title": "Co-Founder & GiveBackGuy at STATE Bags & Camp Power",
+      "bio": "Scot defines the term ‘social entrepreneur’ and has made it his life’s work to balance profitable business ventures with making the world a better place. In 2005, he collaborated with The Mark Wahlberg Foundation and The Boys and Girls Club to create Camp Northbound - a residential camp for kids growing up in the inner cities of Boston. Following its success, Scot set out to build a similar program for kids in New York City’s most underfunded communities, creating Camp Power. In twelve years, this volunteer-based nonprofit organization has provided life-changing experiences, positive role models and college scholarships to thousands of kids. After seeing many Camp Power kids carrying their belongings in ripped trash bags, he and his wife founded STATE Bags - a Brooklyn-born bag brand that uses the power of business to give back and support American children and families in need. He has worked to evolve their charitable model through STATE's innovative giving initiatives and #WhatDoWeTellTheKids platform. A graduate of UVM and Boston native, Scot currently resides in Brooklyn with his wife, two kids and dog, Pokey.",
+      "headshot": "/img/uploads/scot.jpg"
+    },
+    {
+      "name": "Robert Milner",
+      "title": "Entrepeneur, Speaker, and Professor",
+      "bio": "Bob is a serial Entrepreneur, Speaker and Professor whose focus is on Social Impact. He and his wife Teresa, live in The Woodlands, TX along with their 3 rescue dogs. They have 4 children and 2 grandchildren. He is a decorated veteran who served 7 years in the USAF, and has earned a BS in Business, an MBA and he is working towards his PhD in Organizational Development and Executive Leadership. He and his wife enjoy playing golf, traveling, and serving in the community. As he has transitioned into the next phase of his life his focus is on impacting future Entrepreneurs and continuing to grow his social entrepreneurial footprint.\n\nBob was elected to The Woodlands Township Board of Directors to represent the residents in local governance. A finalist for the 2017 Ernst and Young Entrepreneur of the Year award; he and his wife are active philanthropic leaders in the Montgomery County community. Along with being the CEO of TerBo Consulting Inc and MRH Auto Enterprises LLC; he is an Experiential Professor of Entrepreneurship at Sam Houston State University, an Advisor to many nonprofits on strategy, employee engagement and leadership development. Bob currently serves on several NPO and “For Profit” Boards. He is a graduate of the Accenture Executive Leadership Development program and the Thayer Executive Leadership Development Program at West Point Military Academy. He is the recipient of the 2017 The Woodlands Hometown Hero Award, the 2017 VEL Institute Legacy Award for his service and commitment to Veterans and he is the 2018 St. Jude Children’s Research Hospital Lifetime Achievement Honor recipient for his support and contributions to help fight child diseases.",
+      "headshot": "/img/uploads/robert.jpg"
+    }
+  ]
+}

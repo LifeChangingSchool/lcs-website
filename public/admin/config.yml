@@ -55,6 +55,24 @@ collections:
                 name: headshot
                 widget: image
                 allow_multiple: false
+  - name: speakers
+    label: Speakers
+    files:
+      - label: "Speakers"
+        name: "speakers_file"
+        file: "content/speakers.json"
+        fields:
+          - label: "Speaker"
+            name: "speakers"
+            widget: "list"
+            fields:
+              - { label: Name, name: name, widget: string }
+              - { label: Title, name: title, widget: string }
+              - { label: Bio, name: bio, widget: string }
+              - label: Headshot
+                name: headshot
+                widget: image
+                allow_multiple: false
   - name: blog
     label: Blog Posts
     folder: "content/blog"

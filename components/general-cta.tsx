@@ -16,7 +16,7 @@ const GeneralCTA = (props: {className?: string, blog?: boolean}) => (
                 <h3 className="my-8 heading md:text-3xl" style={{
                     lineHeight: 1.0,
                 }}>
-                    <span className="text-black">Launch a business.</span><br/>
+                    <span className="text-black">Launch a startup.</span><br/>
                     <span className="lcs-text-red">Become an entrepreneur.</span><br/>
                     <span className="lcs-text-yellow">Change your life.</span><br/>
                 </h3>

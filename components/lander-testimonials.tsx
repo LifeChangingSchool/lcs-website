@@ -16,7 +16,6 @@ export default function LanderTestimonials() {
 
     return (
         <>
-            <h2 className="heading">Hear from students/alumni and parents</h2>
             <div className="overflow-auto" ref={scrollRef}>
                 <div className="grid md:grid-rows-2 grid-flow-col gap-x-6">
                     {Testimonials.testimonials.map((t, i) => (
