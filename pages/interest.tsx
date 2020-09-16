@@ -2,6 +2,7 @@ import {useState} from "react";
 import validator from "validator";
 import axios from "axios";
 import {useRouter} from "next/router";
+import LCSSEO from "../lib/seolib";
 
 export default function Interest() {
     const router = useRouter();
@@ -82,8 +83,16 @@ export default function Interest() {
         </div>
     );
 
+    const errorNotifMarkup = Object.values(errors).some(d => d) && (
+        <div className="aside ~critical content">
+            <p>Please fill out all fields correctly and try again.</p>
+        </div>
+    );
+
     return (
         <main className="lcs-container">
+            <LCSSEO title="Apply to LCS" description="Ready to make most of your fall? Let's get started. Enter your information below, and we will send
+                    you more details on how to apply."/>
             <div className="max-w-2xl mx-auto p-4 sm:p-8 shadow-xl my-8">
                 <h1 className="heading">Life Changing School: Fall 2020</h1>
                 <p className="my-4 text-xs sm:text-base">Ready to make most of your fall? Let's get started. Enter your information below, and we will send
@@ -91,6 +100,7 @@ export default function Interest() {
                     scholarships available for all students.</p>
                 <hr/>
                 {submitError && submitErrorMarkup}
+                {errorNotifMarkup}
                 <form action="">
                     <label className="label">Student name</label>
                     <div className="md:flex justify-between md:-mx-2">
@@ -109,7 +119,7 @@ export default function Interest() {
                     </div>
 
                     <div className="grid sm:grid-cols-2 mb-8 gap-x-4">
-                        <div className="col-span-2">
+                        <div className="sm:col-span-2">
                             <label className="label">Email</label>
                             <input type="email" className="field" value={email}
                                    onChange={e => setEmail(e.target.value)}/>
@@ -198,6 +208,7 @@ export default function Interest() {
                 </form>
                 <button className="button ~urge !high button-big" onClick={handleSubmit}>Submit</button>
                 {submitError && submitErrorMarkup}
+                {errorNotifMarkup}
             </div>
         </main>
     )
