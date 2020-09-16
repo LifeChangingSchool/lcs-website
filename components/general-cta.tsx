@@ -25,7 +25,7 @@ const GeneralCTA = (props: {className?: string, blog?: boolean}) => (
                     with years of entrepreneurship experience.</p>
                 <div className="md:flex">
                     <Link href="/"><a className="lcs-cta-button w-full md:w-64 md:mr-4 lcs-bg-red my-2">Learn more</a></Link>
-                    <Link href="/apply"><a className="lcs-cta-button w-full md:w-64 md:mr-4 lcs-bg-yellow my-2">Apply Now</a></Link>
+                    <Link href="/interest"><a className="lcs-cta-button w-full md:w-64 md:mr-4 lcs-bg-yellow my-2">Apply Now</a></Link>
                 </div>
             </div>
         </div>

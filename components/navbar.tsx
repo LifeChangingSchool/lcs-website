@@ -24,7 +24,7 @@ export default function Navbar() {
                             <Link href="/about"><a className="lg:ml-4 my-1">About</a></Link>
                             <Link href="/blog"><a className="lg:ml-4 my-1">Blog</a></Link>
                         </div>
-                        {router.route.substr(0,6) !== "/apply" && <Link href="/apply"><a className="lcs-cta-button ml-auto lg:ml-4">Apply</a></Link>}
+                        {router.route.substr(0,6) !== "/interest" && <Link href="/interest"><a className="lcs-cta-button ml-auto lg:ml-4">Apply</a></Link>}
                         <button className={`${router.route.substr(0,6) === "/apply" ? "ml-auto" : "ml-4"} lg:hidden`} onClick={() => setMenuOpen(!menuOpen)}>
                             <FaBars/>
                         </button>

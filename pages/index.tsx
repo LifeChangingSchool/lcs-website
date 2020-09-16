@@ -26,7 +26,7 @@ export default function Home({courseContent}) {
                 incubator</b> for <b>high school students</b>, no prior experience required. Run by Cornell University
                 members
                 with years of entrepreneurship experience.</p>
-            <Link href="/apply"><a className="lcs-cta-button">Apply for October 2020</a></Link>
+            <Link href="/interest"><a className="lcs-cta-button">Apply for October 2020</a></Link>
             <img className="my-8" src="/img/lander1.jpg" alt="LCS hero image"/>
             <hr className="lg:my-16"/>
             <div className="lg:flex items-center">

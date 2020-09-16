@@ -10,7 +10,7 @@ export default function LanderCTA(props: {className?: string}){
                 </div>
                 <div className="col-span-2">
                     <p>Our October 2020 session will run from October 5, 2020 to November 16, 2020. <b>The deadline to apply is September 30, 2020.</b> The program tuition is $900.</p>
-                    <Link href="/apply"><a className="lcs-cta-button w-full lcs-bg-yellow my-4">Apply for October 2020</a></Link>
+                    <Link href="/interest"><a className="lcs-cta-button w-full lcs-bg-yellow my-4">Apply for October 2020</a></Link>
                 </div>
             </div>
         </LanderRedContainer>
