@@ -12,6 +12,7 @@ export default function Application2020() {
     const [channel, setChannel] = useState<string>("");
     const [referralCode, setReferralCode] = useState<string>("");
     const [email, setEmail] = useState<string>("");
+    const [phone, setPhone] = useState<string>("");
     const [schoolName, setSchoolName] = useState<string>("");
     const [schoolYear, setSchoolYear] = useState<string>("freshman");
     const [essay1, setEssay1] = useState<string>("");
@@ -23,6 +24,7 @@ export default function Application2020() {
         lastName: boolean,
         channel: boolean,
         email: boolean,
+        phone: boolean,
         schoolName: boolean,
         essay1: boolean,
         essay2: boolean,
@@ -33,6 +35,7 @@ export default function Application2020() {
         lastName: false,
         channel: false,
         email: false,
+        phone: false,
         schoolName: false,
         essay1: false,
         essay2: false,
@@ -47,6 +50,7 @@ export default function Application2020() {
             lastName: false,
             channel: false,
             email: false,
+            phone: false,
             schoolName: false,
             essay1: false,
             essay2: false,
@@ -61,6 +65,7 @@ export default function Application2020() {
             lastName: !lastName,
             channel: !channel,
             email: !(email && validator.isEmail(email)),
+            phone: !(phone && validator.isMobilePhone(phone)),
             schoolName: !schoolName,
             essay1: !essay1,
             essay2: !essay2,
@@ -77,6 +82,7 @@ export default function Application2020() {
             firstName: firstName,
             lastName: lastName,
             email: email,
+            phone: phone,
             channel: channel,
             schoolName: schoolName,
             schoolYear: schoolYear,
@@ -147,11 +153,17 @@ export default function Application2020() {
                 </div>
 
                 <div className="grid sm:grid-cols-2 mb-8 gap-x-4">
-                    <div className="sm:col-span-2">
+                    <div>
                         <label className="label">Email</label>
                         <input type="email" className="field" value={email}
                                onChange={e => setEmail(e.target.value)}/>
                         {errors.email && <p className="support ~critical">Enter a valid email</p>}
+                    </div>
+                    <div>
+                        <label className="label">Phone number</label>
+                        <input type="text" className="field" value={phone}
+                               onChange={e => setPhone(e.target.value)}/>
+                        {errors.phone && <p className="support ~critical">Enter a valid phone number</p>}
                     </div>
                     <div>
                         <label className="label">High school name</label>

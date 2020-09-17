@@ -3,6 +3,7 @@ import validator from "validator";
 import axios from "axios";
 import {useRouter} from "next/router";
 import LCSSEO from "../lib/seolib";
+import Link from "next/link";
 
 export default function Interest() {
     const router = useRouter();
@@ -12,6 +13,7 @@ export default function Interest() {
     const [channel, setChannel] = useState<string>("");
     const [referralCode, setReferralCode] = useState<string>("");
     const [email, setEmail] = useState<string>("");
+    const [phone, setPhone] = useState<string>("");
     const [schoolName, setSchoolName] = useState<string>("");
     const [schoolYear, setSchoolYear] = useState<string>("freshman");
     const [errors, setErrors] = useState<{
@@ -19,12 +21,14 @@ export default function Interest() {
         lastName: boolean,
         channel: boolean,
         email: boolean,
+        phone: boolean,
         schoolName: boolean
     }>({
         firstName: false,
         lastName: false,
         channel: false,
         email: false,
+        phone: false,
         schoolName: false
     });
     const [submitError, setSubmitError] = useState<string>(null);
@@ -35,6 +39,7 @@ export default function Interest() {
             lastName: false,
             channel: false,
             email: false,
+            phone: false,
             schoolName: false
         });
         setSubmitError(null);
@@ -44,6 +49,7 @@ export default function Interest() {
             lastName: !lastName,
             channel: !channel,
             email: !(email && validator.isEmail(email)),
+            phone: !(phone && validator.isMobilePhone(phone)),
             schoolName: !schoolName
         }
 
@@ -56,6 +62,7 @@ export default function Interest() {
             firstName: firstName,
             lastName: lastName,
             email: email,
+            phone: phone,
             channel: channel,
             schoolName: schoolName,
             schoolYear: schoolYear,
@@ -93,8 +100,9 @@ export default function Interest() {
         <main className="lcs-container">
             <LCSSEO title="Apply to LCS" description="Ready to make most of your fall? Let's get started. Enter your information below, and we will send
                     you more details on how to apply."/>
+            <p className="content aside max-w-2xl mx-auto text-xs sm:text-base"><b>Already started your application?</b><br/> If you made an account already, <Link href="/apply"><a>login to the portal here.</a></Link> Otherwise, go to the <Link href="/application2020"><a>new version of the application.</a></Link></p>
             <div className="max-w-2xl mx-auto p-4 sm:p-8 shadow-xl my-8">
-                <h1 className="heading">Life Changing School: Fall 2020</h1>
+                <h1 className="heading">Life Changing School: Fall 2020 Interest Form</h1>
                 <p className="my-4 text-xs sm:text-base">Ready to make most of your fall? Let's get started. Enter your information below, and we will send
                     you more details on how to apply. Final application deadline: September 30, 2020. Need-based
                     scholarships available for all students.</p>
@@ -119,11 +127,17 @@ export default function Interest() {
                     </div>
 
                     <div className="grid sm:grid-cols-2 mb-8 gap-x-4">
-                        <div className="sm:col-span-2">
+                        <div>
                             <label className="label">Email</label>
                             <input type="email" className="field" value={email}
                                    onChange={e => setEmail(e.target.value)}/>
                             {errors.email && <p className="support ~critical">Enter a valid email</p>}
+                        </div>
+                        <div>
+                            <label className="label">Phone number</label>
+                            <input type="text" className="field" value={phone}
+                                   onChange={e => setPhone(e.target.value)}/>
+                            {errors.phone && <p className="support ~critical">Enter a valid phone number</p>}
                         </div>
                         <div>
                             <label className="label">High school name</label>

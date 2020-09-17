@@ -34,6 +34,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         // if record already exists
         if (records.length > 0) {
             res.status(200).json({message: "You've already expressed interest with this email address."});
+            return;
         }
 
         // otherwise trigger Zapier
