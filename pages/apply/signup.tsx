@@ -12,7 +12,7 @@ export default function ApplySignup() {
 
     return (
         <main className="lcs-container">
-            <LCSSEO title="Redirecting..."/>
+            <LCSSEO title="Redirecting..." description=""/>
             <h1 className="content">Redirecting you to our <Link href="/interest"><a>new application portal...</a></Link></h1>
         </main>
     )

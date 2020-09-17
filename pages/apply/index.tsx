@@ -67,7 +67,7 @@ export default function ApplyIndex(props: {query: {[key: string]: string}}) {
         setIsLoading(true);
 
         if (auth.authLoaded && !auth.user) {
-            router.push({pathname: "/apply/signup", query: {returnStage: props.query.stage}});
+            router.push({pathname: "/apply/login", query: {returnStage: props.query.stage}});
             return;
         }
 
