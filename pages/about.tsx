@@ -7,6 +7,7 @@ const About = () => (
             <h1 className="heading text-white text-center">About LCS</h1>
         </LanderRedContainer>
         <div className="my-12 content max-w-xl mx-auto">
+            <blockquote className="font-bold">Our mission is to train high schoolers to become the next generation of entrepreneurs.</blockquote>
             <h2 className="heading">Our team</h2>
             <p>The virtual Life Changing School Program is run by an incredible team of Cornell University members who have 12+ years of experience with launching ventures and guiding entrepreneurs. Our experienced Cornell members will build the same strong, life changing virtual summer program for our students.</p>
         </div>

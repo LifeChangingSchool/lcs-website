@@ -39,6 +39,7 @@ yarn-error.log*
 
 # IDE
 .idea/
+temp.tsx
 
 #amplify
 amplify/\#current-cloud-backend
