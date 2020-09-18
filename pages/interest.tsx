@@ -100,7 +100,7 @@ export default function Interest() {
         <main className="lcs-container">
             <LCSSEO title="Apply to LCS" description="Ready to make most of your fall? Let's get started. Enter your information below, and we will send
                     you more details on how to apply."/>
-            <p className="content aside max-w-2xl mx-auto text-xs sm:text-base">If you have made an account already, <Link href="/apply"><a>login to the portal here.</a></Link> Do not create an account if you haven't already — fill out the form below for access to the application.</p>
+            <p className="content aside max-w-2xl mx-auto text-xs sm:text-base">Returning to your application? <Link href="/apply"><a>Click here.</a></Link></p>
             <div className="max-w-2xl mx-auto p-4 sm:p-8 shadow-xl my-8">
                 <h1 className="heading">Life Changing School: Fall 2020 Interest Form</h1>
                 <p className="my-4 text-xs sm:text-base">Ready to make most of your fall? Let's get started. Enter your information below, and we will send

@@ -20,7 +20,7 @@ const LanderGrid = () => (
         </div>
         <div className="lcs-grid-item">
             <div className="shield lcs-bg-green">
-                <img src="/img/startuptree.png" alt="StartupTree Logo" className="w-4"/>
+                <img src="/img/startuptree.png" alt="StartupTree Logo" className="w-4 h-4"/>
             </div>
             <h3 className="font-accent font-bold text-lg my-2 leading-5">Premier network</h3>
             <p className="text-xs">Network with top entrepreneurs and students at weekly workshops and on
