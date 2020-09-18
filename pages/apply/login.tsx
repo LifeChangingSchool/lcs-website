@@ -46,6 +46,7 @@ export default function ApplyLogin(){
     return (
         <div className="max-w-sm mx-auto">
             <LCSSEO title="Application Portal Login" description="Log in to our portal to fill out and submit your application to Life Changing School, an entrepreneurship program and incubator for high schoolers."/>
+            <p className="aside content">If you don't have an account yet, fill out our <Link href="/interest"><a>application interest form</a></Link> instead.</p>
             {process.env.NEXT_PUBLIC_MAINTENANCE === "ON" ? (
                 <p className="aside">The LCS application portal is currently undergoing maintenance. You will be able to
                     access the application portal again at 1 AM EST on 9/11/20.</p>
@@ -72,13 +73,6 @@ export default function ApplyLogin(){
                         {errors.password && <p className="~critical support">Enter a valid password</p>}
 
                         <button className="button button-big ~urge !high mt-4">Log in</button>
-
-                        <hr/>
-
-                        <div className="flex items-center">
-                            <p>Don't have an account yet?</p>
-                            <Link href="/apply/signup"><a className="button ml-auto">Sign up</a></Link>
-                        </div>
                     </form>
                 </>
             )}
