@@ -38,7 +38,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         }
 
         // otherwise trigger Zapier
-        axios.post("https://hooks.zapier.com/hooks/catch/8296204/owuazal/", data).then(() => {
+        axios.post(data.scholarship ? "https://hooks.zapier.com/hooks/catch/8296204/owprsj7/" : "https://hooks.zapier.com/hooks/catch/8296204/owuazal/", data).then(() => {
             res.status(200).json({message: "Success", data: data});
             return;
         }).catch(err => {

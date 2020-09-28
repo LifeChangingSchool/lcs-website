@@ -104,8 +104,7 @@ export default function Interest() {
             <div className="max-w-2xl mx-auto p-4 sm:p-8 shadow-xl my-8">
                 <h1 className="heading">Life Changing School: Fall 2020 Interest Form</h1>
                 <p className="my-4 text-xs sm:text-base">Ready to make most of your fall? Let's get started. Enter your information below, and we will send
-                    you more details on how to apply. Final application deadline: September 30, 2020. Need-based
-                    scholarships available for all students.</p>
+                    you more details on how to apply. Final application deadline: Sunday, <b>October 18, 2020, at 11:59 PM EST.</b> Early deadline for $150 off tuition: Sunday, <b>October 4, 2020, at 11:59 EST.</b></p>
                 <hr/>
                 {submitError && submitErrorMarkup}
                 {errorNotifMarkup}
