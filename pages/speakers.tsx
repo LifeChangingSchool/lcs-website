@@ -1,8 +1,10 @@
 import LanderRedContainer from "../components/lander-red-container";
 import speakers from "../content/speakers.json";
+import LCSSEO from "../lib/seolib";
 
 const Speakers = () => (
     <main className="lcs-container">
+        <LCSSEO title="Fall 2020 Speakers" description="The speaker lineup for our Fall 2020 session includes top founders and serial entrepreneurs."/>
         <LanderRedContainer>
             <h1 className="heading text-white text-center">Fall 2020 Speakers</h1>
         </LanderRedContainer>

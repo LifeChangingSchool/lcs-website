@@ -15,6 +15,7 @@ export default function Application2020() {
     const [phone, setPhone] = useState<string>("");
     const [schoolName, setSchoolName] = useState<string>("");
     const [schoolYear, setSchoolYear] = useState<string>("freshman");
+    const [scholarship, setScholarship] = useState<boolean>(false);
     const [essay1, setEssay1] = useState<string>("");
     const [essay2, setEssay2] = useState<string>("");
     const [essay3, setEssay3] = useState<string>("");
@@ -87,6 +88,7 @@ export default function Application2020() {
             schoolName: schoolName,
             schoolYear: schoolYear,
             referralCode: referralCode,
+            scholarship: scholarship,
             essay1: essay1,
             essay2: essay2,
             essay3: essay3,
@@ -127,8 +129,7 @@ export default function Application2020() {
             deadline: September 30, 2020."/>
             <h1 className="heading">Life Changing School: Fall 2020 Application</h1>
             <p className="my-4 text-xs sm:text-base">Fill out the
-                application below to be considered for the October session of Life Changing School. Final application
-                deadline: September 30, 2020. Need-based scholarships available for all students.</p>
+                application below to be considered for the October session of Life Changing School. Final application deadline: Sunday, <b>October 18, 2020, at 11:59 PM EST.</b> Early deadline for $150 off tuition: Sunday, <b>October 4, 2020, at 11:59 EST.</b></p>
             {submitErrorMarkup}
             {errorNotifMarkup}
             <form action="">
@@ -242,6 +243,19 @@ export default function Application2020() {
                     </label>
                     {errors.channel && <p className="support ~critical">Select an option</p>}
                 </div>
+
+                <label className="label">Do you wish to be considered for a need-based scholarship?</label>
+                <div className="mb-8">
+                    <label className="switch block my-2">
+                        <input type="radio" name="scholarship" className="mr-2" checked={scholarship} onChange={e => setScholarship(e.target.checked)}/>
+                        <span>Yes</span>
+                    </label>
+                    <label className="switch block my-2">
+                        <input type="radio" name="scholarship" className="mr-2" checked={!scholarship} onChange={e => setScholarship(!e.target.checked)}/>
+                        <span>No</span>
+                    </label>
+                </div>
+
                 <label className="label">If you have a referral code, enter it below</label>
                 <input type="text" className="field" value={referralCode}
                        onChange={e => setReferralCode(e.target.value)}/>
