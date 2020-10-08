@@ -9,7 +9,7 @@ export default function LanderCTA(props: {className?: string}){
                     <span>October 2020 Session</span>
                 </div>
                 <div className="col-span-2">
-                    <p className="text-xs sm:text-base"><b>The deadline to apply has been extended!</b> Early deadline: <b>October 4 at 11:59 PM EST.</b> Final deadline: <b>October 18 at 11:59 PM EST.</b> The session will begin on October 26.</p>
+                    <p className="text-xs sm:text-base"><b>The deadline to apply is approaching!</b> Early deadline for $100 off: <b>October 11 at 11:59 PM EST.</b> Final deadline: <b>October 18 at 11:59 PM EST.</b> The session will begin on October 26.</p>
                     <Link href="/interest"><a className="lcs-cta-button text-xs sm:text-base w-full lcs-bg-yellow my-4">Apply for October 2020</a></Link>
                 </div>
             </div>
