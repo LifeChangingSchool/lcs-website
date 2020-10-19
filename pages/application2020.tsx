@@ -129,7 +129,7 @@ export default function Application2020() {
             deadline: September 30, 2020."/>
             <h1 className="heading">Life Changing School: Fall 2020 Application</h1>
             <p className="my-4 text-xs sm:text-base">Fill out the
-                application below to be considered for the October session of Life Changing School. Final application deadline: Sunday, <b>October 18, 2020, at 11:59 PM EST.</b> Early deadline for $150 off tuition: Sunday, <b>October 4, 2020, at 11:59 EST.</b></p>
+                application below to be considered for the October session of Life Changing School. Final application deadline: Thursday, <b>October 22, 2020, at 11:59 PM EST.</b></p>
             {submitErrorMarkup}
             {errorNotifMarkup}
             <form action="">

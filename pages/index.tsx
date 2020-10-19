@@ -30,7 +30,7 @@ export default function Home({courseContent}) {
                 our <b>virtual startup incubator and entrepreneurship program,</b> providing them with the education and platform to <b>launch sustainable, impactful startups in just six
                 weeks.</b></p>
             <p className="max-w-2xl mt-4 mb-8">No prior experience required. Run by Cornell University members with years of entrepreneurship experience.</p>
-            <Link href="/interest"><a className="lcs-cta-button">Apply for October 2020</a></Link>
+            <Link href="/interest"><a className="lcs-cta-button">Get notified about sessions</a></Link>
 
             <hr className="my-12"/>
             <h2 className="lcs-uppercase-bold">Fall 2020 guest speakers</h2>
@@ -44,7 +44,9 @@ export default function Home({courseContent}) {
 
             <LanderFeatures/>
 
-            <LanderCost/>
+            {/*<LanderCost/>*/}
+
+            <hr className="sep"/>
 
             <LanderGrid/>
 
@@ -65,7 +67,9 @@ export default function Home({courseContent}) {
                 <Link href="/about"><a className="lcs-outline-button">More about our team &gt;</a></Link>
             </div>
 
-            <LanderCost/>
+            {/*<LanderCost/>*/}
+
+            <LanderCTA className="my-16"/>
 
             <div className="md:grid md:grid-cols-2">
                 <div className="md:pb-0 md:border-b-0 md:pr-6 md:border-r">

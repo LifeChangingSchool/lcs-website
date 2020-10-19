@@ -101,9 +101,8 @@ export default function Interest() {
             <LCSSEO title="Apply to LCS" description="Ready to make most of your fall? Let's get started. Enter your information below, and we will send
                     you more details on how to apply."/>
             <div className="max-w-2xl mx-auto p-4 sm:p-8 shadow-xl my-8">
-                <h1 className="heading">Life Changing School: Fall 2020 Interest Form</h1>
-                <p className="my-4 text-xs sm:text-base">Ready to make most of your fall? Let's get started. Enter your information below, and we will send
-                    you more details on how to apply. Final application deadline: Sunday, <b>October 18, 2020, at 11:59 PM EST.</b> Early deadline for $150 off tuition: Sunday, <b>October 4, 2020, at 11:59 EST.</b></p>
+                <h1 className="heading">Life Changing School: Winter/Spring 2020-21 Interest Form</h1>
+                <p className="my-4 text-xs sm:text-base">Applications for the Fall 2020 session of LCS are closed. LCS will have sessions in the coming winter and spring. Enter your information below to be notified when applications open.</p>
                 <hr/>
                 {submitError && submitErrorMarkup}
                 {errorNotifMarkup}
